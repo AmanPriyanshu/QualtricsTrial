@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags and Title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Data Sharing Consent</title>
+    <!-- Unified CSS -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #e6f0ec;
+            color: #333;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background-color: #fff;
+            overflow-y: auto;
+        }
+
+        /* Hidden class for hiding pages */
+        .hidden {
+            display: none;
+        }
+
+        /* Header */
+        header {
+            background-color: #e6f0ec;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header h1 {
+            font-size: 20px;
+            font-weight: bold;
+            flex: 1;
+            text-align: center;
+        }
+
+        .back-button {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        button {
+            width: 90%;
+            max-width: 400px;
+            padding: 15px;
+            margin: 20px auto;
+            background: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+        }
+
+        button:hover {
+            background: #003580;
+        }
+
+        /* Forms */
+        form {
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 6px;
+            background-color: #f0f0f0;
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .progress {
+            background-color: #ffd700;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 20px;
+        }
+
+        .content-section h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .content-section p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Account Options */
+        .account-options {
+            margin-top: 20px;
+        }
+
+        .account-option {
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .account-option.active {
+            border: 2px solid #0056b3;
+        }
+
+        .account-option img {
+            width: 40px;
+            margin-right: 15px;
+        }
+
+        .account-option h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        /* Checkbox List */
+        .checkbox-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checkbox-list li {
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-list li img {
+            width: 30px;
+            margin-right: 15px;
+        }
+
+        .checkbox-list li label {
+            flex: 1;
+            font-size: 16px;
+        }
+
+        .checkbox-list li input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Footer Info */
+        .footer-info {
+            background-color: #d1e7dd;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Extra Info */
+        #extra-info {
+            background-color: #f0f4f3;
+            margin-top: 20px;
+            border-radius: 12px;
+            padding: 15px;
+            display: none;
+        }
+
+        /* Steps Info */
+        #steps-info {
+            background-color: #f0f4f3;
+            margin-top: 10px;
+            border-radius: 12px;
+            padding: 15px;
+            display: none;
+        }
+
+        /* Success Message */
+        .success-message {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-message .success-icon {
+            font-size: 48px;
+            color: #32a852;
+            margin-bottom: 20px;
+        }
+
+        /* Media Queries for Mobile */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 18px;
+            }
+
+            .content-section h2 {
+                font-size: 20px;
+            }
+
+            .account-option h3 {
+                font-size: 16px;
+            }
+
+            .account-option p {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Page 1: Login Form -->
+        <div id="page1" class="content-section">
+            <header>
+                <div></div>
+                <h1>Login to Your Account</h1>
+            </header>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username">
+                <label for="password">Password:</label>
+                <input type="password" id="password">
+                <button type="button" onclick="showPage('page2')">Login</button>
+            </form>
+        </div>
+
+        <!-- Page 2: Activate Personal Wealth Advisor -->
+        <div id="page2" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page1')">&#8592;</div>
+                <h1>Share Accounts</h1>
+            </header>
+            <main>
+                <div class="illustration">
+                    <img src="https://via.placeholder.com/250" alt="Wealth Advisor Illustration">
+                </div>
+                <h2>Activate your personal wealth advisor</h2>
+                <p>Accounts we need to give you a robust summary</p>
+                <div class="account-options">
+                    <div class="account-option" onclick="toggleAccountOption(this, 'Bank Accounts')">
+                        <img src="https://img.icons8.com/ios-filled/50/0056b3/bank.png" alt="Bank Accounts">
+                        <div>
+                            <h3>Bank Accounts</h3>
+                            <p>Savings Account, Fixed Deposits</p>
+                        </div>
+                    </div>
+                    <div class="account-option" onclick="toggleAccountOption(this, 'Mutual Funds')">
+                        <img src="https://img.icons8.com/ios-filled/50/0056b3/investment-portfolio.png" alt="Mutual Funds">
+                        <div>
+                            <h3>Mutual Funds</h3>
+                            <p>Investments and Portfolios</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <p>We can only analyse account information</p>
+                    <p>We cannot charge or make payments from your account</p>
+                </div>
+                <footer>
+                    <button onclick="toggleInfo()">Read more about Sharing Accounts</button>
+                    <div id="extra-info">
+                        <h3>What does Share Accounts mean in detail?</h3>
+                        <p>Sharing your accounts allows the wealth advisor to provide a robust analysis of your financial situation. Your account information will be securely shared through a central bank-authorized aggregator service. This service ensures your data is encrypted and protected at all times.</p>
+                        <h3>What is an Account Aggregator?</h3>
+                        <p>An account aggregator is a service that collects and organizes financial data from different accounts. This data is shared only with your consent, ensuring a holistic view of your financial assets without risking your privacy or control over your accounts.</p>
+                    </div>
+                    <button onclick="showPage('page3')">Share Accounts</button>
+                    <p>Secure & Quick Sharing via CENTRAL BANK-authorized Account Aggregator Services</p>
+                </footer>
+            </main>
+        </div>
+
+        <!-- Page 3: Bank Selection -->
+        <div id="page3" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page2')">&#8592;</div>
+                <h1>Share Accounts</h1>
+            </header>
+            <div class="info">
+                <p>Unable to support joint account holders</p>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Search Here" id="search-input">
+            </div>
+            <ul class="checkbox-list" id="bankList">
+                <li>
+                    <img src="https://via.placeholder.com/30" alt="Bank 1">
+                    <label>Bank 1</label>
+                    <input type="checkbox" value="Bank 1" class="bank">
+                </li>
+                <li>
+                    <img src="https://via.placeholder.com/30" alt="Bank 2">
+                    <label>Bank 2</label>
+                    <input type="checkbox" value="Bank 2" class="bank">
+                </li>
+                <li>
+                    <img src="https://via.placeholder.com/30" alt="Bank 3">
+                    <label>Bank 3</label>
+                    <input type="checkbox" value="Bank 3" class="bank">
+                </li>
+                <li>
+                    <img src="https://via.placeholder.com/30" alt="Bank 4">
+                    <label>Bank 4</label>
+                    <input type="checkbox" value="Bank 4" class="bank">
+                </li>
+                <li>
+                    <img src="https://via.placeholder.com/30" alt="Bank 5">
+                    <label>Bank 5</label>
+                    <input type="checkbox" value="Bank 5" class="bank">
+                </li>
+            </ul>
+            <button onclick="showPage('page4')">Next</button>
+        </div>
+
+        <!-- Page 4: Share Accounts Partner Info -->
+        <div id="page4" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page3')">&#8592;</div>
+                <h1>Share Accounts</h1>
+            </header>
+            <div class="partner-section">
+                <div class="partner-text">
+                    We have partnered with DATAUSER to securely share your accounts
+                </div>
+                <div class="partner-logos">
+                    <img src="https://via.placeholder.com/50" alt="Icon 1">
+                    <img src="https://via.placeholder.com/50" alt="Icon 2">
+                    <img src="https://via.placeholder.com/50" alt="Icon 3">
+                </div>
+            </div>
+            <ul class="details-list">
+                <li>DATAUSER is a central-bank authorized Account Aggregator</li>
+                <li>DATAUSER cannot read or store any of your data</li>
+                <li>DATAUSER can help share your selected accounts</li>
+            </ul>
+            <div class="setup-time">
+                <div>
+                    <img src="https://via.placeholder.com/20" alt="Clock Icon">
+                    Setting up on Account Aggregator might take 10 minutes. But don’t worry, you won’t have to do it again.
+                </div>
+                <a href="#" class="steps-link" onclick="toggleSteps(event)">See the steps ahead ⬇️</a>
+                <div id="steps-info">
+                    <p>Step 1: Register with the Account Aggregator.</p>
+                    <p>Step 2: Link your bank accounts.</p>
+                    <p>Step 3: Provide consent to share data.</p>
+                </div>
+            </div>
+            <button onclick="showPage('page5')">Continue</button>
+        </div>
+
+        <!-- Page 5: Select Accounts to Share -->
+        <div id="page5" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page4')">&#8592;</div>
+                <h1>Share Accounts</h1>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 50%;"></div>
+            </div>
+            <h2>Select accounts to share</h2>
+            <div class="tab-bar">
+                <div class="tab active">Bank Accounts</div>
+                <div class="tab">Mutual Funds</div>
+            </div>
+            <div class="account-card">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/bank-building.png" alt="Bank Icon" style="background-color: #0056b3; border-radius: 50%; padding: 10px;">
+                <div>
+                    <h3>Bank Accounts</h3>
+                    <p>3 accounts discovered</p>
+                </div>
+            </div>
+            <div class="info-section">
+                <h3>See what you will share</h3>
+                <ul>
+                    <li>Credit transactions over $10,000</li>
+                    <li>Current Balance</li>
+                    <li>Transactions</li>
+                    <li>Profile Information</li>
+                </ul>
+                <div class="date-range">
+                    For the period of: <br>
+                    <strong>17 April 2024 to 17 April 2026</strong>
+                </div>
+            </div>
+            <button onclick="showPage('page6')">Next</button>
+        </div>
+
+        <!-- Page 6: Account Selection with Checkboxes -->
+        <div id="page6" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page5')">&#8592;</div>
+                <h1>Share Accounts</h1>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 75%;"></div>
+            </div>
+            <div class="account-selection">
+                <div class="account-header">
+                    <h2><img src="https://img.icons8.com/ios-filled/50/0056b3/bank-building.png" alt="Bank Icon" style="width:24px;"> Bank Accounts</h2>
+                    <p>3 accounts discovered</p>
+                </div>
+                <div class="accounts-list">
+                    <label class="account-item">
+                        <span class="bank-name">Bank 3</span>
+                        <div class="account-details">
+                            <span>Savings Account (0245)</span>
+                            <input type="checkbox" checked class="features" value="Savings Account (0245)">
+                        </div>
+                    </label>
+                    <label class="account-item">
+                        <span class="bank-name">Bank 3</span>
+                        <div class="account-details">
+                            <span>Fixed Deposit (1207)</span>
+                            <input type="checkbox" class="features" value="Fixed Deposit (1207)">
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <button onclick="showPage('page7')">Submit</button>
+        </div>
+
+        <!-- Page 7: Authorization Success -->
+        <div id="page7" class="content-section hidden">
+            <header>
+                <div></div>
+                <h1>Share Accounts</h1>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 100%;"></div>
+            </div>
+            <div class="success-message">
+                <div class="success-icon">&#10004;</div>
+                <p>Bank Accounts Successfully Authorized</p>
+                <button onclick="submitData()">Finish</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- JavaScript -->
+    <script>
+        let interactionLog = [];
+        let currentState = {
+            page: 'page1',
+            banks: [],
+            features: [],
+            specification: '',
+            termsExpanded: false,
+            termsScrollPercentage: 0,
+            agreedToTerms: false
+        };
+
+        function logInteraction(action, details = {}) {
+            const timestamp = new Date().toISOString();
+            const logEntry = { timestamp, action, ...details, currentState: { ...currentState } };
+            interactionLog.push(logEntry);
+            console.log('Interaction logged:', logEntry);
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.content-section').forEach(page => {
+                page.classList.add('hidden');
+            });
+            // Show the requested page
+            document.getElementById(pageId).classList.remove('hidden');
+            currentState.page = pageId;
+            logInteraction('Page Navigation', { toPage: pageId });
+        }
+
+        function updateState() {
+            // Update state based on inputs
+            currentState.username = document.getElementById('username').value;
+            currentState.password = document.getElementById('password').value;
+            currentState.banks = Array.from(document.querySelectorAll('.bank:checked')).map(bank => bank.value);
+            currentState.features = Array.from(document.querySelectorAll('.features:checked')).map(feature => feature.value);
+        }
+
+        function toggleAccountOption(element, accountType) {
+            element.classList.toggle('active');
+            if (currentState.selectedAccounts && currentState.selectedAccounts.includes(accountType)) {
+                currentState.selectedAccounts = currentState.selectedAccounts.filter(acc => acc !== accountType);
+            } else {
+                currentState.selectedAccounts = currentState.selectedAccounts || [];
+                currentState.selectedAccounts.push(accountType);
+            }
+            logInteraction('Account Option Toggled', { accountType: accountType });
+        }
+
+        function submitData() {
+            updateState();
+            logInteraction('Data Submission');
+            sendFinalLog();
+            alert('Thank you for your submission! The interaction log has been downloaded.');
+            resetForms();
+        }
+
+        function resetForms() {
+            // Reset all forms and states
+            document.querySelectorAll('input').forEach(input => {
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    input.checked = false;
+                } else {
+                    input.value = '';
+                }
+            });
+            currentState = {
+                page: 'page1',
+                banks: [],
+                features: [],
+                specification: '',
+                termsExpanded: false,
+                termsScrollPercentage: 0,
+                agreedToTerms: false
+            };
+            showPage('page1');
+            logInteraction('Forms Reset');
+        }
+
+        function toggleInfo() {
+            const extraInfo = document.getElementById('extra-info');
+            extraInfo.style.display = extraInfo.style.display === 'none' || extraInfo.style.display === '' ? 'block' : 'none';
+            logInteraction('Toggle Info', { expanded: extraInfo.style.display === 'block' });
+        }
+
+        // Live search functionality for page3
+        document.getElementById('search-input').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const bankItems = document.querySelectorAll('#bankList li');
+            bankItems.forEach(item => {
+                const bankLabel = item.querySelector('label').textContent.toLowerCase();
+                if (bankLabel.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            logInteraction('Bank Search', { query: query });
+        });
+
+        document.querySelectorAll('.bank').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                updateState();
+                logInteraction('Bank Checkbox Change', { id: e.target.value, checked: e.target.checked });
+            });
+        });
+
+        document.querySelectorAll('.features').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                updateState();
+                logInteraction('Feature Checkbox Change', { id: e.target.value, checked: e.target.checked });
+            });
+        });
+
+        function toggleSteps(event) {
+            event.preventDefault();
+            const stepsInfo = document.getElementById('steps-info');
+            stepsInfo.style.display = stepsInfo.style.display === 'none' || stepsInfo.style.display === '' ? 'block' : 'none';
+            logInteraction('Toggle Steps Info', { expanded: stepsInfo.style.display === 'block' });
+        }
+
+        // Log page load
+        window.addEventListener('load', () => logInteraction('Page Load'));
+
+        function sendFinalLog() {
+            const finalLog = {
+                interactionLog: interactionLog,
+                finalState: currentState
+            };
+
+            // Create a Blob with the JSON data
+            const blob = new Blob([JSON.stringify(finalLog, null, 2)], { type: 'application/json' });
+
+            // Create a link element and trigger the download
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'interaction_log.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            console.log('Final log downloaded:', finalLog);
+        }
+
+        // Log page unload and download final log
+        window.addEventListener('beforeunload', (event) => {
+            logInteraction('Page Unload');
+            sendFinalLog();
+            // Uncomment the following line if you want to show a confirmation dialog when leaving the page
+            // event.returnValue = '';
+        });
+
+    </script>
+</body>
+</html>
