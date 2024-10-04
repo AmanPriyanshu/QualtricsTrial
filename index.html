@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank Data Sharing Consent</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+    .container { width: 90%; max-width: 600px; margin: 20px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input[type="text"], input[type="password"], button, .features { width: 100%; padding: 10px; margin-top: 10px; }
+    button { background: #0056b3; color: white; border: none; cursor: pointer; }
+    button:hover { background: #003580; }
+    .hidden { display: none; }
+    label { display: block; margin: 15px 0 5px; }
+</style>
+</head>
+<body>
+<div class="container">
+    <div id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username">
+        <label for="password">Password:</label>
+        <input type="password" id="password">
+        <button onclick="showBankSelection()">Login</button>
+    </div>
+    <div id="bankForm" class="hidden">
+        <label>Select Banks:</label>
+        <label><input type="checkbox" class="bank" value="Bank A"> Bank A</label>
+        <label><input type="checkbox" class="bank" value="Bank B"> Bank B</label>
+        <label><input type="checkbox" class="bank" value="Bank C"> Bank C</label>
+        <button onclick="showFeatureSelection()">Next</button>
+    </div>
+    <div id="featureForm" class="hidden">
+        <label>Select Features to Share:</label>
+        <label><input type="checkbox" class="features" value="Transactions"> Transactions</label>
+        <label><input type="checkbox" class="features" value="Credit Score"> Credit Score</label>
+        <label><input type="checkbox" class="features" value="Account Balance"> Account Balance</label>
+        <label for="specification">Purpose Specification:</label>
+        <input type="text" id="specification" placeholder="E.g., Transactions over $10000">
+        <button onclick="submitData()">Submit</button>
+    </div>
+</div>
+<script>
+    function showBankSelection() {
+        logEvent('Login Attempt', `Username: ${document.getElementById('username').value}`);
+        document.getElementById('loginForm').classList.add('hidden');
+        document.getElementById('bankForm').classList.remove('hidden');
+    }
+
+    function showFeatureSelection() {
+        const banks = Array.from(document.querySelectorAll('.bank:checked')).map(bank => bank.value);
+        logEvent('Bank Selection', `Selected Banks: ${banks.join(', ')}`);
+        document.getElementById('bankForm').classList.add('hidden');
+        document.getElementById('featureForm').classList.remove('hidden');
+    }
+
+    function submitData() {
+        const features = Array.from(document.querySelectorAll('.features:checked')).map(feature => feature.value);
+        const specification = document.getElementById('specification').value;
+        logEvent('Data Submission', `Features: ${features.join(', ')}, Specification: ${specification}`);
+        // Reset forms (simulating page reset)
+        document.getElementById('loginForm').classList.remove('hidden');
+        document.getElementById('featureForm').classList.add('hidden');
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    }
+
+    function logEvent(action, details) {
+        console.log(`Timestamp: ${new Date().toISOString()}, Action: ${action}, Details: ${details}`);
+        window.parent.postMessage({
+            type: 'log',
+            action: action,
+            timestamp: new Date().toISOString(),
+            details: details
+        }, '*'); // Remember to replace '*' with the actual domain of your Qualtrics survey for security.
+    }
+</script>
+</body>
+</html>
