@@ -341,7 +341,131 @@
         </div>
 
         <!-- Page 5: Time Frame Selection -->
-        <!-- ... (remaining pages unchanged) ... -->
+        <!-- Page 5: Time Frame Selection -->
+        <div id="page5" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page4')">&#8592;</div>
+                <h1>Select Data Sharing Duration</h1>
+                <div class="progress-indicator">Step 5 of 9</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 55%;"></div>
+            </div>
+            <main>
+                <p>Choose how long you'd like to share your data. Click "Read More" for details on each option.</p>
+                <ul class="option-list">
+                    <li class="option-item" onclick="selectDuration(this, 'one-time')">
+                        <input type="radio" name="duration" value="one-time"> <span class="details">One-Time Access</span>
+                        <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                        <div class="read-more-content">Your data will be accessed once for immediate processing.</div>
+                    </li>
+                    <li class="option-item" onclick="selectDuration(this, 'monthly-6')">
+                        <input type="radio" name="duration" value="monthly-6"> <span class="details">Monthly Access for 6 Months</span>
+                        <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                        <div class="read-more-content">Your data will be accessed monthly over a period of six months to provide ongoing services.</div>
+                    </li>
+                    <li class="option-item" onclick="selectDuration(this, 'monthly-12')">
+                        <input type="radio" name="duration" value="monthly-12"> <span class="details">Monthly Access for 12 Months</span>
+                        <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                        <div class="read-more-content">Your data will be accessed monthly over a period of one year for continuous service improvement.</div>
+                    </li>
+                    <li class="option-item" onclick="toggleAdvancedDuration()">
+                        <input type="radio" name="duration" value="custom"> <span class="details">Custom Duration</span>
+                        <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                        <div class="read-more-content">Set a custom time frame that suits your preferences.</div>
+                    </li>
+                </ul>
+                <div id="customDuration" class="hidden">
+                    <p>Specify your custom time frame:</p>
+                    <input type="date" class="input-field" id="startDate">
+                    <input type="date" class="input-field" id="endDate">
+                </div>
+                <button class="btn" onclick="proceedFromPage5()">Next</button>
+            </main>
+        </div>
+
+        <!-- Page 6: Review and Customize Consent -->
+        <div id="page6" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page5')">&#8592;</div>
+                <h1>Review Your Consent</h1>
+                <div class="progress-indicator">Step 6 of 9</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 66%;"></div>
+            </div>
+            <main>
+                <p>Please review your selections before confirming. You can edit any section by clicking "Edit".</p>
+                <div id="reviewSection">
+                    <!-- Review details will be dynamically loaded here -->
+                </div>
+                <button class="btn" onclick="proceedFromPage6()">Confirm and Proceed</button>
+            </main>
+        </div>
+
+        <!-- Page 7: Consent Confirmation and Legal Disclosures -->
+        <div id="page7" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page6')">&#8592;</div>
+                <h1>Consent Confirmation</h1>
+                <div class="progress-indicator">Step 7 of 9</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 77%;"></div>
+            </div>
+            <main>
+                <p>Please read the following legal disclosures carefully:</p>
+                <div class="legal-section" id="legalDisclosures">
+                    <!-- Legal disclosures will be dynamically loaded here -->
+                </div>
+                <label>
+                    <input type="checkbox" id="agreeTerms"> I have read and agree to the terms and conditions.
+                </label>
+                <button class="btn" onclick="proceedFromPage7()">Confirm Consent</button>
+            </main>
+        </div>
+
+        <!-- Page 8: Confirmation of Consent -->
+        <div id="page8" class="content-section hidden">
+            <header>
+                <h1>Consent Recorded</h1>
+                <div class="progress-indicator">Step 8 of 9</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 88%;"></div>
+            </div>
+            <main class="confirmation">
+                <div class="icon">&#10004;</div>
+                <p>Your consent has been successfully recorded.</p>
+                <p>You can download a copy of your consent agreement below:</p>
+                <button class="btn" onclick="downloadConsent()">Download Consent Agreement</button>
+                <button class="btn" onclick="showPage('page9')">Learn More About Data Privacy</button>
+            </main>
+        </div>
+
+        <!-- Page 9: User Education -->
+        <div id="page9" class="content-section hidden">
+            <header>
+                <h1>Understanding Data Privacy</h1>
+                <div class="progress-indicator">Step 9 of 9</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 100%;"></div>
+            </div>
+            <main class="education-section">
+                <h3>Your Data, Your Rights</h3>
+                <p>At SecureBank, we believe in empowering you with knowledge about your data privacy and rights.</p>
+                <div class="read-more" onclick="toggleReadMoreContent(this)">Learn About Data Protection</div>
+                <div class="read-more-content">
+                    <p>Your data is encrypted and securely stored. We follow industry best practices to ensure your information is protected.</p>
+                </div>
+                <div class="read-more" onclick="toggleReadMoreContent(this)">Understand Consent Revocation</div>
+                <div class="read-more-content">
+                    <p>You have the right to revoke your consent at any time. Simply navigate to your account settings to manage your preferences.</p>
+                </div>
+                <button class="btn" onclick="finishProcess()">Finish</button>
+            </main>
+        </div>
 
     </div>
 
