@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags and Title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureBank Data Sharing Consent</title>
+    <!-- Unified CSS -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background-color: #fff;
+            overflow-y: auto;
+            padding-bottom: 50px;
+            position: relative;
+        }
+
+        /* Hidden class for hiding pages */
+        .hidden {
+            display: none;
+        }
+
+        /* Header */
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 90%;
+            max-width: 400px;
+            padding: 15px;
+            margin: 20px auto;
+            background: #004080;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #003060;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 20px;
+        }
+
+        .content-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content-section p {
+            color: #555;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* Input Fields */
+        .input-field {
+            width: 90%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            font-size: 16px;
+            display: block;
+        }
+
+        /* Option Buttons */
+        .option-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .option-item {
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .option-item.active {
+            border-color: #004080;
+        }
+
+        .option-item input[type="checkbox"] {
+            margin-right: 15px;
+        }
+
+        .option-item .details {
+            flex: 1;
+        }
+
+        .option-item .read-more {
+            color: #004080;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Sub-options */
+        .sub-options {
+            margin-top: 10px;
+            padding-left: 20px;
+            display: none;
+        }
+
+        .sub-option-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .sub-option-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        /* Read More Sections */
+        .read-more-content {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f0f0f0;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 6px;
+            background-color: #e0e0e0;
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .progress {
+            background-color: #004080;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Confirmation Page */
+        .confirmation {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .confirmation .icon {
+            font-size: 48px;
+            color: #32a852;
+            margin-bottom: 20px;
+        }
+
+        /* User Education */
+        .education-section {
+            padding: 20px;
+        }
+
+        .education-section h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .education-section p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Feedback Form */
+        .feedback-form textarea {
+            width: 90%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            font-size: 16px;
+            display: block;
+            resize: vertical;
+        }
+
+        .feedback-form button {
+            margin-top: 10px;
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Legal Disclosures */
+        .legal-section {
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 12px;
+        }
+
+        .legal-section p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Disabled Option */
+        .option-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Category Headers in Option List */
+        .option-list h3 {
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #004080;
+        }
+
+        /* Show Sub-options */
+        .option-item.active .sub-options {
+            display: block;
+        }
+
+        /* Error Message */
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Page 1: Welcome and Introduction -->
+        <div id="page1" class="content-section">
+            <header>
+                <h1>Welcome to SecureBank</h1>
+                <div class="progress-indicator">Step 1 of 7</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 14%;"></div>
+            </div>
+            <main>
+                <h2>Your Financial Journey Starts Here</h2>
+                <p>At SecureBank, we prioritize your financial well-being. By securely sharing your financial data, you unlock personalized services tailored to your needs.</p>
+                <p>Your privacy and control are our utmost priorities. Learn more about how we protect your data.</p>
+                <button class="btn" onclick="showPage('page2')">Proceed</button>
+            </main>
+        </div>
+
+        <!-- Page 2: Bank and Account Selection -->
+        <div id="page2" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page1')">&#8592;</div>
+                <h1>Select Your Banks and Accounts</h1>
+                <div class="progress-indicator">Step 2 of 7</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 28%;"></div>
+            </div>
+            <main>
+                <p>Please select the banks where you hold accounts:</p>
+                <ul class="option-list" id="bankList">
+                    <!-- Bank options will be dynamically loaded here -->
+                </ul>
+                <p>You have full control over which accounts to share.</p>
+                <button class="btn" onclick="proceedFromPage2()">Next</button>
+            </main>
+        </div>
+
+        <!-- Page 3: Category and Function Selection -->
+        <div id="page3" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page2')">&#8592;</div>
+                <h1>Select Data Categories and Functions</h1>
+                <div class="progress-indicator">Step 3 of 7</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 42%;"></div>
+            </div>
+            <main>
+                <p>Select the categories of data and the specific functions or inferences you consent to share. Click "Read More" for details.</p>
+                <div id="categoryList">
+                    <!-- Categories and functions will be dynamically loaded here -->
+                </div>
+                <div class="error-message" id="page3Error">Please select at least one function under each selected category.</div>
+                <button class="btn" onclick="proceedFromPage3()">Next</button>
+            </main>
+        </div>
+
+        <!-- Page 4: Time Frame Selection -->
+        <div id="page4" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page3')">&#8592;</div>
+                <h1>Select Data Sharing Duration</h1>
+                <div class="progress-indicator">Step 4 of 7</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 56%;"></div>
+            </div>
+            <main>
+                <p>Choose how long you'd like to share your data. Click "Read More" for details on each option.</p>
+                <ul class="option-list">
+                    <li class="option-item" onclick="selectDuration(this, 'one-time')">
+                        <input type="radio" name="duration" value="one-time"> <span class="details">One-Time Access</span>
+                        <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                        <div class="read-more-content">Your data will be accessed once for immediate processing.</div>
+                    </li>
+                    <li class="option-item" onclick="selectDuration(this, 'monthly-6')">
+                        <input type="radio" name="duration" value="monthly-6"> <span class="details">Monthly Access for 6 Months</span>
+                        <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                        <div class="read-more-content">Your data will be accessed monthly over a period of six months to provide ongoing services.</div>
+                    </li>
+                    <li class="option-item" onclick="selectDuration(this, 'monthly-12')">
+                        <input type="radio" name="duration" value="monthly-12"> <span class="details">Monthly Access for 12 Months</span>
+                        <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                        <div class="read-more-content">Your data will be accessed monthly over a period of one year for continuous service improvement.</div>
+                    </li>
+                    <li class="option-item" onclick="toggleAdvancedDuration()">
+                        <input type="radio" name="duration" value="custom"> <span class="details">Custom Duration</span>
+                        <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                        <div class="read-more-content">Set a custom time frame that suits your preferences.</div>
+                    </li>
+                </ul>
+                <div id="customDuration" class="hidden">
+                    <p>Specify your custom time frame:</p>
+                    <input type="date" class="input-field" id="startDate">
+                    <input type="date" class="input-field" id="endDate">
+                </div>
+                <button class="btn" onclick="proceedFromPage4()">Next</button>
+            </main>
+        </div>
+
+        <!-- Page 5: Review and Customize Consent -->
+        <div id="page5" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page4')">&#8592;</div>
+                <h1>Review Your Consent</h1>
+                <div class="progress-indicator">Step 5 of 7</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 70%;"></div>
+            </div>
+            <main>
+                <p>Please review your selections before confirming. You can edit any section by clicking "Edit".</p>
+                <div id="reviewSection">
+                    <!-- Review details will be dynamically loaded here -->
+                </div>
+                <button class="btn" onclick="proceedFromPage5()">Confirm and Proceed</button>
+            </main>
+        </div>
+
+        <!-- Page 6: Consent Confirmation and Legal Disclosures -->
+        <div id="page6" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page5')">&#8592;</div>
+                <h1>Consent Confirmation</h1>
+                <div class="progress-indicator">Step 6 of 7</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 84%;"></div>
+            </div>
+            <main>
+                <p>Please read the following legal disclosures carefully:</p>
+                <div class="legal-section" id="legalDisclosures">
+                    <!-- Legal disclosures will be dynamically loaded here -->
+                </div>
+                <label>
+                    <input type="checkbox" id="agreeTerms"> I have read and agree to the terms and conditions.
+                </label>
+                <button class="btn" onclick="proceedFromPage6()">Confirm Consent</button>
+            </main>
+        </div>
+
+        <!-- Page 7: Confirmation of Consent -->
+        <div id="page7" class="content-section hidden">
+            <header>
+                <h1>Consent Recorded</h1>
+                <div class="progress-indicator">Step 7 of 7</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 100%;"></div>
+            </div>
+            <main class="confirmation">
+                <div class="icon">&#10004;</div>
+                <p>Your consent has been successfully recorded.</p>
+                <p>You can download a copy of your consent agreement below:</p>
+                <button class="btn" onclick="downloadConsent()">Download Consent Agreement</button>
+                <button class="btn" onclick="finishProcess()">Finish</button>
+            </main>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        let interactionLog = [];
+        let currentState = {
+            page: 'page1',
+            selectedBanks: [],
+            selectedAccounts: {},
+            selectedCategories: [],
+            selectedFunctions: {},
+            selectedDuration: '',
+            customStartDate: '',
+            customEndDate: '',
+            agreedToTerms: false
+        };
+
+        const categories = [
+          {
+            id: 'personal-info',
+            text: 'Personal Information',
+            description: 'This category encompasses the foundational data elements that uniquely identify a user within financial systems, such as the Permanent Account Number (PAN), bank account numbers, and types of bank accounts. These identifiers are crucial for conducting secure transactions and are often required by regulatory bodies to ensure compliance with anti-money laundering (AML) and know your customer (KYC) regulations. Accurate collection and secure handling of this information are paramount for maintaining customer trust and the integrity of financial transactions. Each data element in this category is handled with stringent security measures, including the use of Zero-Knowledge Proofs (ZKP) to ensure purpose specification compliance without revealing the underlying data.',
+            functions: [
+              { id: 'pan-number', text: 'Permanent Account Number of the user', description: 'The Permanent Account Number (PAN) is a ten-digit unique alphanumeric identifier issued to individuals, families, and entities, enabling the government to track financial transactions that might have tax implications. This number is vital for financial assessments and tax-related accounting in India, serving as a critical component in the fight against tax evasion. Our system uses ZKP to ensure that the disclosure of PAN details strictly adheres to purpose-specific consent.' },
+              { id: 'bank-account-number', text: 'Bank account number of the user', description: 'A bank account number is a unique identifier assigned to a bank account which facilitates the processing of electronic or paper checks and is critical for routing money transfers between banks via systems like SWIFT, SEPA, or ACH. It is essential for ensuring the correct execution of transactions across banking networks. By employing ZKP, our platform guarantees that access to bank account numbers meets the specific consent requirements detailed in user agreements.' },
+              { id: 'bank-account-type', text: 'Bank account type of the user', description: 'This information specifies whether a bank account is categorized as a checking, savings, deposit, or some other type of account, affecting the applicability of fees, interest rates, and transaction limitations. Understanding account types is crucial for personal financial management and banking compliance. Through the use of ZKP, our system ensures that any sharing of account type information complies with explicitly defined user permissions.' },
+            ]
+          },
+          {
+            id: 'account-balances',
+            text: 'Account Balances',
+            description: 'This category records the fluctuating states of a user’s financial assets in their bank accounts, tracking balances across different points in time. Such data is fundamental for personal finance management, loan eligibility assessments, and financial planning. Accurately monitoring these balances enables users and financial institutions to gauge financial health and liquidity. Each balance-related function under this category uses Zero-Knowledge Proofs to uphold the principle of minimum disclosure, ensuring that only the requisite data for a specific purpose is shared while maintaining user privacy.',
+            functions: [
+              { id: 'latest-account-value', text: 'Amount value of the account as of the latest date', description: 'This function retrieves the most recent snapshot of the user’s account balance, providing a current view of available funds. It is instrumental in assessing short-term financial stability and readiness for upcoming transactions or unforeseen expenses. Employing ZKP ensures that this sensitive information is only shared in accordance with specific user-consented purposes.' },
+              { id: 'end-of-month-balances', text: 'Balances as on the end of the month', description: 'This function calculates the user’s account balances at the close of each month, offering insights into monthly financial trends, spending behaviors, and savings rates. Such data assists in long-term financial planning and budgeting. Utilization of ZKP allows for the secure sharing of end-of-month balances, adhering to predetermined user permissions.' },
+              { id: 'daily-balances', text: 'End of day balances for every day of the month', description: 'Tracking daily ending balances provides a detailed view of a user’s financial fluctuations throughout the month. This granular insight is crucial for understanding daily spending patterns, managing cash flow, and detecting unusual account activities potentially indicative of fraud. By implementing ZKP, we ensure that the disclosure of daily balances is performed strictly within the bounds of the user’s consent.' },
+            ]
+          },
+          {
+            id: 'transaction-summary',
+            text: 'Transaction Summary',
+            description: 'This category aggregates transactional data across a user’s accounts, summarizing credit and debit activities. This overview aids users in tracking their financial operations over time, helping detect patterns and potential discrepancies. It also serves as a foundation for automated financial advice and anomaly detection systems in banking. By integrating ZKP, we provide assurance that transaction summaries are shared exclusively under the terms agreed to by the user, enhancing data privacy and security.',
+            functions: [
+              { id: 'total-credited', text: "Total amount credited to the user's account", description: 'This function sums up all credit entries in the user’s account over a specified period, providing a measure of total income or transfers into the account. It is essential for understanding income streams and ensuring that credits are documented and categorized correctly for financial reporting. ZKP technology is employed to share these details only for purposes explicitly authorized by the user.' },
+              { id: 'total-debited', text: "Total amount debited from the user's account", description: 'This function accumulates all debit transactions from the user’s account, reflecting total expenditures or outflows. Monitoring debits is vital for fraud detection, budget management, and financial planning. The use of ZKP guarantees that information about debits is disclosed solely for purposes that have been specifically consented to by the user.' },
+              { id: 'average-salary', text: 'The 6 month average salary of the user', description: 'Calculating the average monthly salary over a six-month period offers a stable indicator of a user’s earnings, useful for loan applications and financial stability assessments. This function helps lenders and financial advisors make informed decisions based on consistent income figures. ZKP is utilized to ensure that salary information is shared in a purpose-specific manner, aligning with user permissions.' },
+              { id: 'cash-deposit-ratio', text: 'The monthly cash deposit to total credit amount ratio', description: 'This ratio compares the amount of cash deposited to the total credit amounts each month, serving as an indicator of liquidity and cash reliance in financial activities. High ratios may indicate a preference or need for liquidity, influencing financial product offerings. Employing ZKP, our system ensures the secure and purpose-specific sharing of this financial ratio.' },
+              { id: 'outward-cheque-bounces', text: 'Total number of outward cheque bounces', description: 'This function counts the number of times cheques issued by the user were returned due to insufficient funds, which can serve as an indicator of financial management issues or potential fraud. Tracking these incidents helps maintain financial integrity and compliance. Through ZKP, we ensure that information regarding cheque bounces is only shared for specific, user-consented purposes.' },
+            ]
+          },
+          {
+            id: 'expense-analysis',
+            text: 'Expense Analysis',
+            description: 'This category provides a detailed breakdown of user expenditures, categorizing them into various types such as groceries, utilities, and discretionary spending. This analysis is instrumental for personal budgeting, financial advising, and identifying potential savings areas. Insights derived from expense analysis can also support targeted marketing and personalized financial product offerings. All data sharing regarding expense analysis adheres to strict privacy standards, with ZKP ensuring that information is disclosed only in accordance with specific consents.',
+            functions: [
+              { id: 'expense-classification', text: "Detailed classification of the user's monthly expenses", description: 'This function categorizes each transaction based on the nature of the expense, providing a comprehensive overview of spending habits. This categorization aids in budgeting and financial planning by identifying areas where spending can be optimized for savings or investment. By applying ZKP, we safeguard the confidentiality of detailed expense data, sharing it strictly under conditions predefined by user consent.' },
+            ]
+          },
+          {
+            id: 'financial-ratios',
+            text: 'Financial Ratios',
+            description: 'Financial ratios are critical metrics that provide insights into a user’s financial health, leveraging data on income, debts, expenses, and more. These ratios are used by financial institutions for assessing creditworthiness, investment potential, and overall financial stability. Common ratios include debt-to-income and savings rate, each offering distinct insights that can guide financial decision-making. Our implementation of ZKP ensures that these sensitive financial ratios are shared only according to the specific purposes authorized by the user, maintaining privacy and data integrity.',
+            functions: [
+              { id: 'foir', text: 'Financial Obligation Ratio (FOIR)', description: 'The Financial Obligation Ratio (FOIR) calculates the proportion of a user’s income that is committed to debt repayments, including loans and credit card bills. It is a key indicator of financial health and loan repayment capacity. Accurate FOIR computation helps lenders assess risk and determine loan eligibility. ZKP is utilized to ensure that FOIR data is shared only for specific, authorized purposes, enhancing user trust and data security.' },
+              { id: 'betting-cash-flags', text: 'Betting and Cash Withdrawal Flags', description: 'This function identifies transactions that may indicate high-risk financial behavior, such as frequent or large betting transactions and unusual cash withdrawals. These flags assist in monitoring for potentially fraudulent or financially risky behavior, crucial for maintaining account security and compliance. The application of ZKP guarantees that such sensitive information is disclosed strictly in accordance with user-set boundaries.' },
+            ]
+          },
+        ];
+
+        function logInteraction(action, details = {}) {
+            const timestamp = new Date().toISOString();
+            const logEntry = { timestamp, action, ...details, currentState: { ...currentState } };
+            interactionLog.push(logEntry);
+            console.log('Interaction logged:', logEntry);
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.content-section').forEach(page => {
+                page.classList.add('hidden');
+            });
+            // Show the requested page
+            document.getElementById(pageId).classList.remove('hidden');
+            currentState.page = pageId;
+            logInteraction('Page Navigation', { toPage: pageId });
+            updateProgressBar(pageId);
+            if (pageId === 'page2') loadBankOptions();
+            if (pageId === 'page3') loadCategoryOptions();
+            if (pageId === 'page5') loadReview();
+            if (pageId === 'page6') loadLegalDisclosures();
+        }
+
+        function updateProgressBar(pageId) {
+            const progressBar = document.querySelector('.progress');
+            let width = 0;
+            switch (pageId) {
+                case 'page1': width = 14; break;
+                case 'page2': width = 28; break;
+                case 'page3': width = 42; break;
+                case 'page4': width = 56; break;
+                case 'page5': width = 70; break;
+                case 'page6': width = 84; break;
+                case 'page7': width = 100; break;
+                default: width = 0;
+            }
+            progressBar.style.width = width + '%';
+            updateProgressIndicator(pageId);
+        }
+
+        function updateProgressIndicator(pageId) {
+            const stepNumber = {
+                'page1': 'Step 1 of 7',
+                'page2': 'Step 2 of 7',
+                'page3': 'Step 3 of 7',
+                'page4': 'Step 4 of 7',
+                'page5': 'Step 5 of 7',
+                'page6': 'Step 6 of 7',
+                'page7': 'Step 7 of 7'
+            };
+            document.querySelector(`#${pageId} .progress-indicator`).textContent = stepNumber[pageId];
+        }
+
+        function loadBankOptions() {
+            const banks = ['Bank A', 'Bank B', 'Bank C', 'Bank D', 'Bank E'];
+            const bankList = document.getElementById('bankList');
+            bankList.innerHTML = '';
+            banks.forEach(bank => {
+                const li = document.createElement('li');
+                li.classList.add('option-item');
+                li.onclick = function() { toggleBankSelection(this, bank); };
+                li.innerHTML = `<input type="checkbox" value="${bank}"> <span class="details">${bank}</span>`;
+                bankList.appendChild(li);
+            });
+        }
+
+        function toggleBankSelection(element, bank) {
+            const checkbox = element.querySelector('input');
+            checkbox.checked = !checkbox.checked;
+            element.classList.toggle('active', checkbox.checked);
+            if (checkbox.checked) {
+                currentState.selectedBanks.push(bank);
+                currentState.selectedAccounts[bank] = [];
+                // Simulate account selection
+                selectAccountsForBank(bank);
+            } else {
+                currentState.selectedBanks = currentState.selectedBanks.filter(item => item !== bank);
+                delete currentState.selectedAccounts[bank];
+            }
+            logInteraction('Bank Selection Toggled', { bank, selected: checkbox.checked });
+        }
+
+        function selectAccountsForBank(bank) {
+            // Simulate account selection for the bank
+            const accounts = ['Savings Account', 'Checking Account', 'Credit Card'];
+            currentState.selectedAccounts[bank] = accounts;
+            logInteraction('Accounts Selected for Bank', { bank, accounts });
+        }
+
+        function loadCategoryOptions() {
+            const categoryList = document.getElementById('categoryList');
+            categoryList.innerHTML = '';
+            categories.forEach(category => {
+                const categoryItem = document.createElement('div');
+                categoryItem.classList.add('option-item');
+                categoryItem.onclick = function() { toggleCategorySelection(this, category.id); };
+                categoryItem.innerHTML = `
+                    <div class="category-header">
+                        <input type="checkbox" value="${category.id}"> <span class="details">${category.text}</span>
+                        <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                        <div class="read-more-content">${category.description}</div>
+                    </div>
+                    <div class="sub-options" id="subOptions-${category.id}">
+                        <!-- Sub-options will be loaded here -->
+                    </div>
+                `;
+                categoryList.appendChild(categoryItem);
+            });
+        }
+
+        function toggleCategorySelection(element, categoryId) {
+            const checkbox = element.querySelector('.category-header input');
+            checkbox.checked = !checkbox.checked;
+            element.classList.toggle('active', checkbox.checked);
+
+            const subOptionsDiv = element.querySelector('.sub-options');
+            if (checkbox.checked) {
+                currentState.selectedCategories.push(categoryId);
+                currentState.selectedFunctions[categoryId] = [];
+                loadSubOptions(categoryId, subOptionsDiv);
+            } else {
+                currentState.selectedCategories = currentState.selectedCategories.filter(id => id !== categoryId);
+                delete currentState.selectedFunctions[categoryId];
+                subOptionsDiv.innerHTML = '';
+            }
+            logInteraction('Category Selection Toggled', { categoryId, selected: checkbox.checked });
+        }
+
+        function loadSubOptions(categoryId, subOptionsDiv) {
+            const category = categories.find(cat => cat.id === categoryId);
+            subOptionsDiv.innerHTML = '';
+            category.functions.forEach(func => {
+                const subOptionItem = document.createElement('div');
+                subOptionItem.classList.add('sub-option-item');
+                subOptionItem.onclick = function(event) { toggleFunctionSelection(this, categoryId, func.id, event); };
+                subOptionItem.innerHTML = `
+                    <input type="checkbox" value="${func.id}"> <span>${func.text}</span>
+                    <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                    <div class="read-more-content">${func.description}</div>
+                `;
+                subOptionsDiv.appendChild(subOptionItem);
+            });
+        }
+
+        function toggleFunctionSelection(element, categoryId, functionId, event) {
+            event.stopPropagation();
+            const checkbox = element.querySelector('input');
+            checkbox.checked = !checkbox.checked;
+            if (checkbox.checked) {
+                currentState.selectedFunctions[categoryId].push(functionId);
+            } else {
+                currentState.selectedFunctions[categoryId] = currentState.selectedFunctions[categoryId].filter(id => id !== functionId);
+            }
+            logInteraction('Function Selection Toggled', { categoryId, functionId, selected: checkbox.checked });
+        }
+
+        function selectDuration(element, value) {
+            document.querySelectorAll('[name="duration"]').forEach(radio => {
+                radio.checked = false;
+                radio.parentElement.classList.remove('active');
+            });
+            const radio = element.querySelector('input');
+            radio.checked = true;
+            element.classList.add('active');
+            currentState.selectedDuration = value;
+            logInteraction('Duration Selected', { duration: value });
+            if (value === 'custom') {
+                document.getElementById('customDuration').classList.remove('hidden');
+            } else {
+                document.getElementById('customDuration').classList.add('hidden');
+                currentState.customStartDate = '';
+                currentState.customEndDate = '';
+            }
+        }
+
+        function toggleAdvancedDuration() {
+            selectDuration(document.querySelector('[value="custom"]').parentElement, 'custom');
+        }
+
+        function proceedFromPage2() {
+            if (currentState.selectedBanks.length === 0) {
+                alert('Please select at least one bank.');
+                return;
+            }
+            showPage('page3');
+        }
+
+        function proceedFromPage3() {
+            const errorDiv = document.getElementById('page3Error');
+            let valid = true;
+            if (currentState.selectedCategories.length === 0) {
+                valid = false;
+            } else {
+                currentState.selectedCategories.forEach(categoryId => {
+                    if (!currentState.selectedFunctions[categoryId] || currentState.selectedFunctions[categoryId].length === 0) {
+                        valid = false;
+                    }
+                });
+            }
+            if (!valid) {
+                errorDiv.style.display = 'block';
+                return;
+            } else {
+                errorDiv.style.display = 'none';
+            }
+            showPage('page4');
+        }
+
+        function proceedFromPage4() {
+            if (currentState.selectedDuration === '') {
+                alert('Please select a duration.');
+                return;
+            }
+            if (currentState.selectedDuration === 'custom') {
+                currentState.customStartDate = document.getElementById('startDate').value;
+                currentState.customEndDate = document.getElementById('endDate').value;
+                if (!currentState.customStartDate || !currentState.customEndDate) {
+                    alert('Please select start and end dates.');
+                    return;
+                }
+            }
+            showPage('page5');
+        }
+
+        function loadReview() {
+            const reviewSection = document.getElementById('reviewSection');
+            let banksHtml = '';
+            currentState.selectedBanks.forEach(bank => {
+                banksHtml += `<p>${bank}: ${currentState.selectedAccounts[bank].join(', ')}</p>`;
+            });
+
+            let categoriesHtml = '';
+            currentState.selectedCategories.forEach(categoryId => {
+                const category = categories.find(c => c.id === categoryId);
+                const functionsList = currentState.selectedFunctions[categoryId];
+                const functionsText = functionsList.map(funcId => {
+                    const func = category.functions.find(f => f.id === funcId);
+                    return func ? func.text : funcId;
+                }).join(', ');
+                categoriesHtml += `<p><strong>${category.text}:</strong> ${functionsText}</p>`;
+            });
+
+            reviewSection.innerHTML = `
+                <h3>Banks and Accounts Selected:</h3>
+                ${banksHtml}
+                <button class="btn" onclick="showPage('page2')">Edit</button>
+                <h3>Categories and Functions:</h3>
+                ${categoriesHtml}
+                <button class="btn" onclick="showPage('page3')">Edit</button>
+                <h3>Duration:</h3>
+                <p>${currentState.selectedDuration === 'custom' ? 
+                    `From ${currentState.customStartDate} to ${currentState.customEndDate}` : 
+                    currentState.selectedDuration.replace('-', ' ')}</p>
+                <button class="btn" onclick="showPage('page4')">Edit</button>
+            `;
+        }
+
+        function proceedFromPage5() {
+            showPage('page6');
+        }
+
+        function loadLegalDisclosures() {
+            const legalDisclosures = document.getElementById('legalDisclosures');
+            legalDisclosures.innerHTML = `
+                <p><strong>Data Usage:</strong> Your data will be used solely for the purposes you've selected.</p>
+                <p><strong>Data Protection:</strong> We employ industry-standard security measures to protect your data.</p>
+                <p><strong>Your Rights:</strong> You have the right to revoke consent at any time.</p>
+                <div class="read-more" onclick="toggleReadMoreContent(this)">View Full Terms and Conditions</div>
+                <div class="read-more-content">
+                    <p>Full legal terms and conditions go here, providing detailed information on data usage, protection, and user rights.</p>
+                </div>
+            `;
+        }
+
+        function proceedFromPage6() {
+            const agreed = document.getElementById('agreeTerms').checked;
+            if (!agreed) {
+                alert('You must agree to the terms and conditions to proceed.');
+                return;
+            }
+            currentState.agreedToTerms = true;
+            showPage('page7');
+            logInteraction('Consent Confirmed', { agreedToTerms: true });
+            sendFinalLog(); // Log interactions after consent is confirmed
+        }
+
+        function downloadConsent() {
+            const consentData = {
+                banks: currentState.selectedBanks,
+                accounts: currentState.selectedAccounts,
+                categories: currentState.selectedCategories,
+                functions: currentState.selectedFunctions,
+                duration: currentState.selectedDuration,
+                customStartDate: currentState.customStartDate,
+                customEndDate: currentState.customEndDate,
+                timestamp: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(consentData, null, 2)], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'consent_agreement.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            logInteraction('Consent Downloaded', { consentData });
+        }
+
+        function finishProcess() {
+            alert('Thank you for using SecureBank services!');
+            resetForms();
+            showPage('page1');
+        }
+
+        function resetForms() {
+            // Reset all states
+            currentState = {
+                page: 'page1',
+                selectedBanks: [],
+                selectedAccounts: {},
+                selectedCategories: [],
+                selectedFunctions: {},
+                selectedDuration: '',
+                customStartDate: '',
+                customEndDate: '',
+                agreedToTerms: false
+            };
+            document.getElementById('agreeTerms').checked = false;
+            logInteraction('Forms Reset');
+        }
+
+        function toggleReadMore(element, event) {
+            event.stopPropagation();
+            const content = element.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            logInteraction('Read More Toggled', { content: content.textContent, visible: content.style.display === 'block' });
+        }
+
+        function toggleReadMoreContent(element) {
+            const content = element.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            logInteraction('Read More Content Toggled', { content: content.textContent, visible: content.style.display === 'block' });
+        }
+
+        // Initialize the application
+        window.addEventListener('load', () => {
+            logInteraction('Page Load');
+            showPage('page1');
+        });
+
+        // Before unload event to log the interaction
+        window.addEventListener('beforeunload', (event) => {
+            logInteraction('Page Unload');
+            sendFinalLog();
+        });
+
+        function sendFinalLog() {
+            const finalLog = {
+                interactionLog: interactionLog,
+                finalState: currentState
+            };
+
+            // Create a Blob with the JSON data
+            const blob = new Blob([JSON.stringify(finalLog, null, 2)], { type: 'application/json' });
+
+            // Create a link element and trigger the download
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'interaction_log.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            console.log('Final log downloaded:', finalLog);
+        }
+    </script>
+</body>
+</html>
