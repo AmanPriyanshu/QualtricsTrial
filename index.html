@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Documentation</title>
+    <title>Project Documentation Overview</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,6 +14,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
         th, td {
             border: 1px solid #dddddd;
@@ -33,38 +35,53 @@
     </style>
 </head>
 <body>
-    <h1>Project Documentation</h1>
+    <h1>Project Documentation Overview</h1>
+    <p>Explore the different implementations of our privacy consent mechanisms. Each version aims to test various aspects of user interaction and understanding.</p>
     <table>
         <thead>
             <tr>
                 <th>Description</th>
                 <th>File</th>
+                <th>Explanation</th>
+                <th>Reasoning</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Dynamic Hierarchical One Page (Point Wise)</td>
+                <td>Dynamic Hierarchical One Page (Descriptive with Points)</td>
                 <td><a href="OPT_dynamic_heirarchical_one_page_DISC_descriptive_point_wise.html">View File</a></td>
+                <td>Dynamic rendering allows for interactive, on-the-fly adjustments to content displayed based on user selection. This hierarchical setup organizes information into grouped categories with headers, with detailed point-wise descriptions for each category and function.</td>
+                <td>This format tests user understanding and preference for interactive, detailed, and well-structured consent mechanisms. Point-wise details may improve comprehension and retention of information regarding their data sharing consent.</td>
             </tr>
             <tr>
                 <td>Dynamic Hierarchical One Page (Descriptive)</td>
                 <td><a href="OPT_dynamic_heirarchical_one_page_DISC_descriptive.html">View File</a></td>
+                <td>Similar to the previous, this format uses dynamic rendering and hierarchical information structuring on a single page. However, it presents information in a descriptive paragraph format rather than points.</td>
+                <td>By contrasting with point-wise description, this version assesses how narrative-style information affects user engagement and understanding, highlighting preferences between different descriptive formats in dynamic settings.</td>
             </tr>
             <tr>
-                <td>Non-Dynamic Hierarchical Split Page (Point Wise)</td>
+                <td>Non-Dynamic Hierarchical Split Page (Descriptive with Points)</td>
                 <td><a href="OPT_non_dynamic_heirarchical_split_page_DISC_descriptive_point_wise.html">View File</a></td>
+                <td>This version features a split-page layout that statically displays content. Users navigate between two separate pages for category and function selections, with hierarchical grouping and point-wise descriptions.</td>
+                <td>This setup evaluates user response to traditional multi-page forms that require navigation. It tests if splitting content across pages affects comprehension or preference, compared to a single dynamic page.</td>
             </tr>
             <tr>
                 <td>Non-Dynamic Hierarchical Split Page (Descriptive)</td>
                 <td><a href="OPT_non_dynamic_heirarchical_split_page_DISC_descriptive.html">View File</a></td>
+                <td>Employing a non-dynamic, two-page approach, this layout also uses hierarchical structuring but with narrative-style descriptions. It separates category and function choices across pages.</td>
+                <td>This format allows testing of user preferences for non-dynamic content delivery in a descriptive format, evaluating whether users favor narrative information over point-wise in a static, multi-page context.</td>
             </tr>
             <tr>
-                <td>Non-Dynamic Raw List Split Page (Descriptive)</td>
+                <td>(Default) Non-Dynamic Raw List Split Page (Descriptive)</td>
                 <td><a href="OPT_non_dynamic_raw_list_split_page_DISC_descriptive.html">View File</a></td>
+                <td>This version displays a non-dynamic raw list on split pages without hierarchical grouping. Information is presented in a straightforward descriptive format across multiple pages.</td>
+                <td>The aim is to test user navigation and understanding in a basic list format, determining if the absence of hierarchical grouping affects the clarity and effectiveness of the consent process.</td>
             </tr>
             <tr>
                 <td>Non-Dynamic Raw List Split Page (Point Wise)</td>
                 <td><a href="OPT_non_dynamic_raw_list_split_page_DISC_point_wise.html">View File</a></td>
+                <td>Features a simple, non-dynamic list format split across pages, providing information in concise points. It lacks hierarchical structuring, focusing purely on content clarity.</td>
+                <td>This setup tests whether a straightforward, bulleted list enhances user comprehension and consent accuracy compared to more structured formats, especially in a static, multi-page setup.</td>
             </tr>
         </tbody>
     </table>
