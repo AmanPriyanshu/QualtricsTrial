@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags and Title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureBank Data Sharing Consent</title>
+    <!-- Unified CSS -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background-color: #fff;
+            overflow-y: auto;
+            padding-bottom: 50px;
+            position: relative;
+        }
+
+        /* Hidden class for hiding pages */
+        .hidden {
+            display: none;
+        }
+
+        /* Header */
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 90%;
+            max-width: 400px;
+            padding: 15px;
+            margin: 20px auto;
+            background: #004080;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #003060;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 20px;
+        }
+
+        .content-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content-section p {
+            color: #555;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* Input Fields */
+        .input-field {
+            width: 90%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            font-size: 16px;
+            display: block;
+        }
+
+        /* Option Buttons */
+        .option-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .option-item {
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .option-item.active {
+            border-color: #004080;
+        }
+
+        .option-item input {
+            margin-right: 15px;
+        }
+
+        .option-item .details {
+            flex: 1;
+        }
+
+        .option-item .read-more {
+            color: #004080;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Read More Sections */
+        .read-more-content {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f0f0f0;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 6px;
+            background-color: #e0e0e0;
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .progress {
+            background-color: #004080;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Confirmation Page */
+        .confirmation {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .confirmation .icon {
+            font-size: 48px;
+            color: #32a852;
+            margin-bottom: 20px;
+        }
+
+        /* User Education */
+        .education-section {
+            padding: 20px;
+        }
+
+        .education-section h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .education-section p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Feedback Form */
+        .feedback-form textarea {
+            width: 90%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            font-size: 16px;
+            display: block;
+            resize: vertical;
+        }
+
+        .feedback-form button {
+            margin-top: 10px;
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Legal Disclosures */
+        .legal-section {
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 12px;
+        }
+
+        .legal-section p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Disabled Option */
+        .option-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Category Headers in Option List */
+        .option-list h3 {
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #004080;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Page 1: Welcome and Introduction -->
+        <div id="page1" class="content-section">
+            <header>
+                <h1>Welcome to SecureBank</h1>
+                <div class="progress-indicator">Step 1 of 9</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 11%;"></div>
+            </div>
+            <main>
+                <h2>Your Financial Journey Starts Here</h2>
+                <p>At SecureBank, we prioritize your financial well-being. By securely sharing your financial data, you unlock personalized services tailored to your needs.</p>
+                <p>Your privacy and control are our utmost priorities. Learn more about how we protect your data.</p>
+                <button class="btn" onclick="showPage('page2')">Proceed</button>
+            </main>
+        </div>
+
+        <!-- Page 2: Bank and Account Selection -->
+        <div id="page2" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page1')">&#8592;</div>
+                <h1>Select Your Banks and Accounts</h1>
+                <div class="progress-indicator">Step 2 of 9</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 22%;"></div>
+            </div>
+            <main>
+                <p>Please select the banks where you hold accounts:</p>
+                <ul class="option-list" id="bankList">
+                    <!-- Bank options will be dynamically loaded here -->
+                </ul>
+                <p>You have full control over which accounts to share.</p>
+                <button class="btn" onclick="proceedFromPage2()">Next</button>
+            </main>
+        </div>
+
+        <!-- Page 3: Purpose Specification -->
+        <div id="page3" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page2')">&#8592;</div>
+                <h1>Select Categories of Data to Share</h1>
+                <div class="progress-indicator">Step 3 of 9</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 33%;"></div>
+            </div>
+            <main>
+                <p>Select the categories of data you consent to share. Click "Read More" for details.</p>
+                <ul class="option-list" id="purposeList">
+                    <!-- Purpose options will be dynamically loaded here -->
+                </ul>
+                <button class="btn" onclick="proceedFromPage3()">Next</button>
+            </main>
+        </div>
+
+        <!-- Page 4: Granular Data Selection -->
+        <div id="page4" class="content-section hidden">
+            <header>
+                <div class="back-button" onclick="showPage('page3')">&#8592;</div>
+                <h1>Select Specific Functions/Inferences</h1>
+                <div class="progress-indicator">Step 4 of 9</div>
+            </header>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 44%;"></div>
+            </div>
+            <main>
+                <p>Select the specific functions or inferences you are comfortable sharing. Click "Read More" for explanations.</p>
+                <ul class="option-list" id="dataList">
+                    <!-- Data options will be dynamically loaded here -->
+                </ul>
+                <button class="btn" onclick="proceedFromPage4()">Next</button>
+            </main>
+        </div>
+
+        <!-- Page 5: Time Frame Selection -->
+        <!-- ... (remaining pages unchanged) ... -->
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        let interactionLog = [];
+        let currentState = {
+            page: 'page1',
+            selectedBanks: [],
+            selectedAccounts: {},
+            selectedCategories: [],
+            selectedFunctions: [],
+            selectedDuration: '',
+            customStartDate: '',
+            customEndDate: '',
+            agreedToTerms: false
+        };
+
+        const categories = [
+          {
+            id: 'personal-info',
+            text: 'Personal Information',
+            description: 'Includes personal details like PAN, bank account number, and account type.',
+            functions: [
+              { id: 'pan-number', text: 'Permanent Account Number of the user', description: 'Your PAN number is a unique identifier used for tax purposes.' },
+              { id: 'bank-account-number', text: 'Bank account number of the user', description: 'Your bank account number is used to identify your account.' },
+              { id: 'bank-account-type', text: 'Bank account type of the user', description: 'The type of your bank account, such as savings or checking.' },
+            ]
+          },
+          {
+            id: 'account-balances',
+            text: 'Account Balances',
+            description: 'Information about your account balances over time.',
+            functions: [
+              { id: 'latest-account-value', text: 'Amount value of the account as of the latest date', description: 'Your account balance as of the most recent date.' },
+              { id: 'end-of-month-balances', text: 'Balances as on the end of the month', description: 'Your account balances at the end of each month.' },
+              { id: 'daily-balances', text: 'End of day balances for every day of the month', description: 'Your account balance at the end of each day.' },
+            ]
+          },
+          {
+            id: 'transaction-summary',
+            text: 'Transaction Summary',
+            description: 'Summary of your transactions over time.',
+            functions: [
+              { id: 'total-credited', text: "Total amount credited to the user's account", description: 'The total amount deposited into your account.' },
+              { id: 'total-debited', text: "Total amount debited from the user's account", description: 'The total amount withdrawn from your account.' },
+              { id: 'average-salary', text: 'The 6 month average salary of the user', description: 'Your average salary over the past six months.' },
+              { id: 'cash-deposit-ratio', text: 'The monthly cash deposit to total credit amount ratio', description: 'The ratio of cash deposits to total credits each month.' },
+              { id: 'outward-cheque-bounces', text: 'Total number of outward cheque bounces', description: 'The number of times cheques issued by you were returned due to insufficient funds.' },
+            ]
+          },
+          {
+            id: 'expense-analysis',
+            text: 'Expense Analysis',
+            description: 'Detailed analysis of your expenses.',
+            functions: [
+              { id: 'expense-classification', text: "Detailed classification of the user's monthly expenses", description: 'Categorization of your expenses by type each month.' },
+            ]
+          },
+          {
+            id: 'financial-ratios',
+            text: 'Financial Ratios',
+            description: 'Analysis of your financial ratios.',
+            functions: [
+              { id: 'foir', text: 'Financial Obligation Ratio (FOIR)', description: 'Computes the ratio of fixed obligations to income.' },
+              { id: 'betting-cash-flags', text: 'Betting and Cash Withdrawal Flags', description: 'Identifies potentially risky transactions related to betting or unusual cash withdrawals.' },
+            ]
+          },
+        ];
+
+        function logInteraction(action, details = {}) {
+            const timestamp = new Date().toISOString();
+            const logEntry = { timestamp, action, ...details, currentState: { ...currentState } };
+            interactionLog.push(logEntry);
+            console.log('Interaction logged:', logEntry);
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.content-section').forEach(page => {
+                page.classList.add('hidden');
+            });
+            // Show the requested page
+            document.getElementById(pageId).classList.remove('hidden');
+            currentState.page = pageId;
+            logInteraction('Page Navigation', { toPage: pageId });
+            updateProgressBar(pageId);
+            if (pageId === 'page2') loadBankOptions();
+            if (pageId === 'page3') loadPurposeOptions();
+            if (pageId === 'page4') loadDataOptions();
+            if (pageId === 'page6') loadReview();
+            if (pageId === 'page7') loadLegalDisclosures();
+        }
+
+        function updateProgressBar(pageId) {
+            const progressBar = document.querySelector('.progress');
+            let width = 0;
+            switch (pageId) {
+                case 'page1': width = 11; break;
+                case 'page2': width = 22; break;
+                case 'page3': width = 33; break;
+                case 'page4': width = 44; break;
+                case 'page5': width = 55; break;
+                case 'page6': width = 66; break;
+                case 'page7': width = 77; break;
+                case 'page8': width = 88; break;
+                case 'page9': width = 100; break;
+                default: width = 0;
+            }
+            progressBar.style.width = width + '%';
+            updateProgressIndicator(pageId);
+        }
+
+        function updateProgressIndicator(pageId) {
+            const stepNumber = {
+                'page1': 'Step 1 of 9',
+                'page2': 'Step 2 of 9',
+                'page3': 'Step 3 of 9',
+                'page4': 'Step 4 of 9',
+                'page5': 'Step 5 of 9',
+                'page6': 'Step 6 of 9',
+                'page7': 'Step 7 of 9',
+                'page8': 'Step 8 of 9',
+                'page9': 'Step 9 of 9'
+            };
+            document.querySelector(`#${pageId} .progress-indicator`).textContent = stepNumber[pageId];
+        }
+
+        function loadBankOptions() {
+            const banks = ['Bank A', 'Bank B', 'Bank C', 'Bank D', 'Bank E'];
+            const bankList = document.getElementById('bankList');
+            bankList.innerHTML = '';
+            banks.forEach(bank => {
+                const li = document.createElement('li');
+                li.classList.add('option-item');
+                li.onclick = function() { toggleBankSelection(this, bank); };
+                li.innerHTML = `<input type="checkbox" value="${bank}"> <span class="details">${bank}</span>`;
+                bankList.appendChild(li);
+            });
+        }
+
+        function toggleBankSelection(element, bank) {
+            const checkbox = element.querySelector('input');
+            checkbox.checked = !checkbox.checked;
+            element.classList.toggle('active', checkbox.checked);
+            if (checkbox.checked) {
+                currentState.selectedBanks.push(bank);
+                currentState.selectedAccounts[bank] = [];
+                // Simulate account selection
+                selectAccountsForBank(bank);
+            } else {
+                currentState.selectedBanks = currentState.selectedBanks.filter(item => item !== bank);
+                delete currentState.selectedAccounts[bank];
+            }
+            logInteraction('Bank Selection Toggled', { bank, selected: checkbox.checked });
+        }
+
+        function selectAccountsForBank(bank) {
+            // Simulate account selection for the bank
+            const accounts = ['Savings Account', 'Checking Account', 'Credit Card'];
+            currentState.selectedAccounts[bank] = accounts;
+            logInteraction('Accounts Selected for Bank', { bank, accounts });
+        }
+
+        function loadPurposeOptions() {
+            const purposeList = document.getElementById('purposeList');
+            purposeList.innerHTML = '';
+            categories.forEach(category => {
+                const li = document.createElement('li');
+                li.classList.add('option-item');
+                li.onclick = function() { toggleOptionItem(this, 'selectedCategories', category.id); };
+                li.innerHTML = `<input type="checkbox" value="${category.id}"> <span class="details">${category.text}</span>
+                    <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                    <div class="read-more-content">${category.description}</div>`;
+                purposeList.appendChild(li);
+            });
+        }
+
+        function loadDataOptions() {
+            const dataList = document.getElementById('dataList');
+            dataList.innerHTML = '';
+            categories.forEach(category => {
+                const categoryHeader = document.createElement('h3');
+                categoryHeader.textContent = category.text;
+                dataList.appendChild(categoryHeader);
+
+                category.functions.forEach(dataFunction => {
+                    const li = document.createElement('li');
+                    li.classList.add('option-item');
+                    li.onclick = function() { toggleOptionItem(this, 'selectedFunctions', dataFunction.id); };
+                    li.innerHTML = `<input type="checkbox" value="${dataFunction.id}"> <span class="details">${dataFunction.text}</span>
+                        <div class="read-more" onclick="toggleReadMore(this, event)">Read More</div>
+                        <div class="read-more-content">${dataFunction.description}</div>`;
+                    // Disable if the category is not selected in page 3
+                    if (!currentState.selectedCategories.includes(category.id)) {
+                        li.classList.add('disabled');
+                        li.onclick = null;
+                        const input = li.querySelector('input');
+                        input.disabled = true;
+                    }
+                    dataList.appendChild(li);
+                });
+            });
+        }
+
+        function toggleOptionItem(element, stateArrayName, value) {
+            const checkbox = element.querySelector('input');
+            checkbox.checked = !checkbox.checked;
+            element.classList.toggle('active', checkbox.checked);
+            if (checkbox.checked) {
+                currentState[stateArrayName].push(value);
+            } else {
+                currentState[stateArrayName] = currentState[stateArrayName].filter(item => item !== value);
+            }
+            logInteraction('Option Toggled', { option: value, selected: checkbox.checked });
+        }
+
+        function selectDuration(element, value) {
+            document.querySelectorAll('[name="duration"]').forEach(radio => {
+                radio.checked = false;
+                radio.parentElement.classList.remove('active');
+            });
+            const radio = element.querySelector('input');
+            radio.checked = true;
+            element.classList.add('active');
+            currentState.selectedDuration = value;
+            logInteraction('Duration Selected', { duration: value });
+            if (value === 'custom') {
+                document.getElementById('customDuration').classList.remove('hidden');
+            } else {
+                document.getElementById('customDuration').classList.add('hidden');
+                currentState.customStartDate = '';
+                currentState.customEndDate = '';
+            }
+        }
+
+        function toggleAdvancedDuration() {
+            selectDuration(document.querySelector('[value="custom"]').parentElement, 'custom');
+        }
+
+        function proceedFromPage2() {
+            if (currentState.selectedBanks.length === 0) {
+                alert('Please select at least one bank.');
+                return;
+            }
+            showPage('page3');
+        }
+
+        function proceedFromPage3() {
+            if (currentState.selectedCategories.length === 0) {
+                alert('Please select at least one category.');
+                return;
+            }
+            showPage('page4');
+        }
+
+        function proceedFromPage4() {
+            if (currentState.selectedFunctions.length === 0) {
+                alert('Please select at least one function.');
+                return;
+            }
+            showPage('page5');
+        }
+
+        function proceedFromPage5() {
+            if (currentState.selectedDuration === '') {
+                alert('Please select a duration.');
+                return;
+            }
+            if (currentState.selectedDuration === 'custom') {
+                currentState.customStartDate = document.getElementById('startDate').value;
+                currentState.customEndDate = document.getElementById('endDate').value;
+                if (!currentState.customStartDate || !currentState.customEndDate) {
+                    alert('Please select start and end dates.');
+                    return;
+                }
+            }
+            showPage('page6');
+        }
+
+        function loadReview() {
+            const reviewSection = document.getElementById('reviewSection');
+            reviewSection.innerHTML = `
+                <h3>Banks and Accounts Selected:</h3>
+                <p>${currentState.selectedBanks.map(bank => `${bank}: ${currentState.selectedAccounts[bank].join(', ')}`).join('<br>')}</p>
+                <button class="btn" onclick="showPage('page2')">Edit</button>
+                <h3>Categories:</h3>
+                <p>${currentState.selectedCategories.map(id => {
+                    const category = categories.find(c => c.id === id);
+                    return category ? category.text : id;
+                }).join(', ')}</p>
+                <button class="btn" onclick="showPage('page3')">Edit</button>
+                <h3>Functions:</h3>
+                <p>${currentState.selectedFunctions.map(id => {
+                    let funcText = '';
+                    categories.forEach(category => {
+                        const func = category.functions.find(f => f.id === id);
+                        if (func) funcText = func.text;
+                    });
+                    return funcText || id;
+                }).join(', ')}</p>
+                <button class="btn" onclick="showPage('page4')">Edit</button>
+                <h3>Duration:</h3>
+                <p>${currentState.selectedDuration === 'custom' ? 
+                    `From ${currentState.customStartDate} to ${currentState.customEndDate}` : 
+                    currentState.selectedDuration.replace('-', ' ')}</p>
+                <button class="btn" onclick="showPage('page5')">Edit</button>
+            `;
+        }
+
+        function proceedFromPage6() {
+            showPage('page7');
+        }
+
+        function loadLegalDisclosures() {
+            const legalDisclosures = document.getElementById('legalDisclosures');
+            legalDisclosures.innerHTML = `
+                <p><strong>Data Usage:</strong> Your data will be used solely for the purposes you've selected.</p>
+                <p><strong>Data Protection:</strong> We employ industry-standard security measures to protect your data.</p>
+                <p><strong>Your Rights:</strong> You have the right to revoke consent at any time.</p>
+                <div class="read-more" onclick="toggleReadMoreContent(this)">View Full Terms and Conditions</div>
+                <div class="read-more-content">
+                    <p>Full legal terms and conditions go here, providing detailed information on data usage, protection, and user rights.</p>
+                </div>
+            `;
+        }
+
+        function proceedFromPage7() {
+            const agreed = document.getElementById('agreeTerms').checked;
+            if (!agreed) {
+                alert('You must agree to the terms and conditions to proceed.');
+                return;
+            }
+            currentState.agreedToTerms = true;
+            showPage('page8');
+            logInteraction('Consent Confirmed', { agreedToTerms: true });
+            sendFinalLog(); // Log interactions after consent is confirmed
+        }
+
+        function downloadConsent() {
+            const consentData = {
+                banks: currentState.selectedBanks,
+                accounts: currentState.selectedAccounts,
+                categories: currentState.selectedCategories,
+                functions: currentState.selectedFunctions,
+                duration: currentState.selectedDuration,
+                customStartDate: currentState.customStartDate,
+                customEndDate: currentState.customEndDate,
+                timestamp: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(consentData, null, 2)], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'consent_agreement.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            logInteraction('Consent Downloaded', { consentData });
+        }
+
+        function finishProcess() {
+            alert('Thank you for using SecureBank services!');
+            resetForms();
+            showPage('page1');
+        }
+
+        function resetForms() {
+            // Reset all states
+            currentState = {
+                page: 'page1',
+                selectedBanks: [],
+                selectedAccounts: {},
+                selectedCategories: [],
+                selectedFunctions: [],
+                selectedDuration: '',
+                customStartDate: '',
+                customEndDate: '',
+                agreedToTerms: false
+            };
+            document.getElementById('agreeTerms').checked = false;
+            logInteraction('Forms Reset');
+        }
+
+        function toggleReadMore(element, event) {
+            event.stopPropagation();
+            const content = element.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            logInteraction('Read More Toggled', { content: content.textContent, visible: content.style.display === 'block' });
+        }
+
+        function toggleReadMoreContent(element) {
+            const content = element.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            logInteraction('Read More Content Toggled', { content: content.textContent, visible: content.style.display === 'block' });
+        }
+
+        // Initialize the application
+        window.addEventListener('load', () => {
+            logInteraction('Page Load');
+            showPage('page1');
+        });
+
+        // Before unload event to log the interaction
+        window.addEventListener('beforeunload', (event) => {
+            logInteraction('Page Unload');
+            sendFinalLog();
+        });
+
+        function sendFinalLog() {
+            const finalLog = {
+                interactionLog: interactionLog,
+                finalState: currentState
+            };
+
+            // Create a Blob with the JSON data
+            const blob = new Blob([JSON.stringify(finalLog, null, 2)], { type: 'application/json' });
+
+            // Create a link element and trigger the download
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'interaction_log.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            console.log('Final log downloaded:', finalLog);
+        }
+    </script>
+</body>
+</html>
