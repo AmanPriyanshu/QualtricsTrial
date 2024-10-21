@@ -339,8 +339,7 @@
                 <button class="btn" onclick="proceedFromPage4()">Next</button>
             </main>
         </div>
-
-        <!-- Page 5: Time Frame Selection -->
+        
         <!-- Page 5: Time Frame Selection -->
         <div id="page5" class="content-section hidden">
             <header>
@@ -488,50 +487,50 @@
           {
             id: 'personal-info',
             text: 'Personal Information',
-            description: 'Includes personal details like PAN, bank account number, and account type.',
+            description: 'This category encompasses the foundational data elements that uniquely identify a user within financial systems, such as the Permanent Account Number (PAN), bank account numbers, and types of bank accounts. These identifiers are crucial for conducting secure transactions and are often required by regulatory bodies to ensure compliance with anti-money laundering (AML) and know your customer (KYC) regulations. Accurate collection and secure handling of this information are paramount for maintaining customer trust and the integrity of financial transactions. Each data element in this category is handled with stringent security measures, including the use of Zero-Knowledge Proofs (ZKP) to ensure purpose specification compliance without revealing the underlying data.',
             functions: [
-              { id: 'pan-number', text: 'Permanent Account Number of the user', description: 'Your PAN number is a unique identifier used for tax purposes.' },
-              { id: 'bank-account-number', text: 'Bank account number of the user', description: 'Your bank account number is used to identify your account.' },
-              { id: 'bank-account-type', text: 'Bank account type of the user', description: 'The type of your bank account, such as savings or checking.' },
+              { id: 'pan-number', text: 'Permanent Account Number of the user', description: 'The Permanent Account Number (PAN) is a ten-digit unique alphanumeric identifier issued to individuals, families, and entities, enabling the government to track financial transactions that might have tax implications. This number is vital for financial assessments and tax-related accounting in India, serving as a critical component in the fight against tax evasion. Our system uses ZKP to ensure that the disclosure of PAN details strictly adheres to purpose-specific consent.' },
+              { id: 'bank-account-number', text: 'Bank account number of the user', description: 'A bank account number is a unique identifier assigned to a bank account which facilitates the processing of electronic or paper checks and is critical for routing money transfers between banks via systems like SWIFT, SEPA, or ACH. It is essential for ensuring the correct execution of transactions across banking networks. By employing ZKP, our platform guarantees that access to bank account numbers meets the specific consent requirements detailed in user agreements.' },
+              { id: 'bank-account-type', text: 'Bank account type of the user', description: 'This information specifies whether a bank account is categorized as a checking, savings, deposit, or some other type of account, affecting the applicability of fees, interest rates, and transaction limitations. Understanding account types is crucial for personal financial management and banking compliance. Through the use of ZKP, our system ensures that any sharing of account type information complies with explicitly defined user permissions.' },
             ]
           },
           {
             id: 'account-balances',
             text: 'Account Balances',
-            description: 'Information about your account balances over time.',
+            description: 'This category records the fluctuating states of a user’s financial assets in their bank accounts, tracking balances across different points in time. Such data is fundamental for personal finance management, loan eligibility assessments, and financial planning. Accurately monitoring these balances enables users and financial institutions to gauge financial health and liquidity. Each balance-related function under this category uses Zero-Knowledge Proofs to uphold the principle of minimum disclosure, ensuring that only the requisite data for a specific purpose is shared while maintaining user privacy.',
             functions: [
-              { id: 'latest-account-value', text: 'Amount value of the account as of the latest date', description: 'Your account balance as of the most recent date.' },
-              { id: 'end-of-month-balances', text: 'Balances as on the end of the month', description: 'Your account balances at the end of each month.' },
-              { id: 'daily-balances', text: 'End of day balances for every day of the month', description: 'Your account balance at the end of each day.' },
+              { id: 'latest-account-value', text: 'Amount value of the account as of the latest date', description: 'This function retrieves the most recent snapshot of the user’s account balance, providing a current view of available funds. It is instrumental in assessing short-term financial stability and readiness for upcoming transactions or unforeseen expenses. Employing ZKP ensures that this sensitive information is only shared in accordance with specific user-consented purposes.' },
+              { id: 'end-of-month-balances', text: 'Balances as on the end of the month', description: 'This function calculates the user’s account balances at the close of each month, offering insights into monthly financial trends, spending behaviors, and savings rates. Such data assists in long-term financial planning and budgeting. Utilization of ZKP allows for the secure sharing of end-of-month balances, adhering to predetermined user permissions.' },
+              { id: 'daily-balances', text: 'End of day balances for every day of the month', description: 'Tracking daily ending balances provides a detailed view of a user’s financial fluctuations throughout the month. This granular insight is crucial for understanding daily spending patterns, managing cash flow, and detecting unusual account activities potentially indicative of fraud. By implementing ZKP, we ensure that the disclosure of daily balances is performed strictly within the bounds of the user’s consent.' },
             ]
           },
           {
             id: 'transaction-summary',
             text: 'Transaction Summary',
-            description: 'Summary of your transactions over time.',
+            description: 'This category aggregates transactional data across a user’s accounts, summarizing credit and debit activities. This overview aids users in tracking their financial operations over time, helping detect patterns and potential discrepancies. It also serves as a foundation for automated financial advice and anomaly detection systems in banking. By integrating ZKP, we provide assurance that transaction summaries are shared exclusively under the terms agreed to by the user, enhancing data privacy and security.',
             functions: [
-              { id: 'total-credited', text: "Total amount credited to the user's account", description: 'The total amount deposited into your account.' },
-              { id: 'total-debited', text: "Total amount debited from the user's account", description: 'The total amount withdrawn from your account.' },
-              { id: 'average-salary', text: 'The 6 month average salary of the user', description: 'Your average salary over the past six months.' },
-              { id: 'cash-deposit-ratio', text: 'The monthly cash deposit to total credit amount ratio', description: 'The ratio of cash deposits to total credits each month.' },
-              { id: 'outward-cheque-bounces', text: 'Total number of outward cheque bounces', description: 'The number of times cheques issued by you were returned due to insufficient funds.' },
+              { id: 'total-credited', text: "Total amount credited to the user's account", description: 'This function sums up all credit entries in the user’s account over a specified period, providing a measure of total income or transfers into the account. It is essential for understanding income streams and ensuring that credits are documented and categorized correctly for financial reporting. ZKP technology is employed to share these details only for purposes explicitly authorized by the user.' },
+              { id: 'total-debited', text: "Total amount debited from the user's account", description: 'This function accumulates all debit transactions from the user’s account, reflecting total expenditures or outflows. Monitoring debits is vital for fraud detection, budget management, and financial planning. The use of ZKP guarantees that information about debits is disclosed solely for purposes that have been specifically consented to by the user.' },
+              { id: 'average-salary', text: 'The 6 month average salary of the user', description: 'Calculating the average monthly salary over a six-month period offers a stable indicator of a user’s earnings, useful for loan applications and financial stability assessments. This function helps lenders and financial advisors make informed decisions based on consistent income figures. ZKP is utilized to ensure that salary information is shared in a purpose-specific manner, aligning with user permissions.' },
+              { id: 'cash-deposit-ratio', text: 'The monthly cash deposit to total credit amount ratio', description: 'This ratio compares the amount of cash deposited to the total credit amounts each month, serving as an indicator of liquidity and cash reliance in financial activities. High ratios may indicate a preference or need for liquidity, influencing financial product offerings. Employing ZKP, our system ensures the secure and purpose-specific sharing of this financial ratio.' },
+              { id: 'outward-cheque-bounces', text: 'Total number of outward cheque bounces', description: 'This function counts the number of times cheques issued by the user were returned due to insufficient funds, which can serve as an indicator of financial management issues or potential fraud. Tracking these incidents helps maintain financial integrity and compliance. Through ZKP, we ensure that information regarding cheque bounces is only shared for specific, user-consented purposes.' },
             ]
           },
           {
             id: 'expense-analysis',
             text: 'Expense Analysis',
-            description: 'Detailed analysis of your expenses.',
+            description: 'This category provides a detailed breakdown of user expenditures, categorizing them into various types such as groceries, utilities, and discretionary spending. This analysis is instrumental for personal budgeting, financial advising, and identifying potential savings areas. Insights derived from expense analysis can also support targeted marketing and personalized financial product offerings. All data sharing regarding expense analysis adheres to strict privacy standards, with ZKP ensuring that information is disclosed only in accordance with specific consents.',
             functions: [
-              { id: 'expense-classification', text: "Detailed classification of the user's monthly expenses", description: 'Categorization of your expenses by type each month.' },
+              { id: 'expense-classification', text: "Detailed classification of the user's monthly expenses", description: 'This function categorizes each transaction based on the nature of the expense, providing a comprehensive overview of spending habits. This categorization aids in budgeting and financial planning by identifying areas where spending can be optimized for savings or investment. By applying ZKP, we safeguard the confidentiality of detailed expense data, sharing it strictly under conditions predefined by user consent.' },
             ]
           },
           {
             id: 'financial-ratios',
             text: 'Financial Ratios',
-            description: 'Analysis of your financial ratios.',
+            description: 'Financial ratios are critical metrics that provide insights into a user’s financial health, leveraging data on income, debts, expenses, and more. These ratios are used by financial institutions for assessing creditworthiness, investment potential, and overall financial stability. Common ratios include debt-to-income and savings rate, each offering distinct insights that can guide financial decision-making. Our implementation of ZKP ensures that these sensitive financial ratios are shared only according to the specific purposes authorized by the user, maintaining privacy and data integrity.',
             functions: [
-              { id: 'foir', text: 'Financial Obligation Ratio (FOIR)', description: 'Computes the ratio of fixed obligations to income.' },
-              { id: 'betting-cash-flags', text: 'Betting and Cash Withdrawal Flags', description: 'Identifies potentially risky transactions related to betting or unusual cash withdrawals.' },
+              { id: 'foir', text: 'Financial Obligation Ratio (FOIR)', description: 'The Financial Obligation Ratio (FOIR) calculates the proportion of a user’s income that is committed to debt repayments, including loans and credit card bills. It is a key indicator of financial health and loan repayment capacity. Accurate FOIR computation helps lenders assess risk and determine loan eligibility. ZKP is utilized to ensure that FOIR data is shared only for specific, authorized purposes, enhancing user trust and data security.' },
+              { id: 'betting-cash-flags', text: 'Betting and Cash Withdrawal Flags', description: 'This function identifies transactions that may indicate high-risk financial behavior, such as frequent or large betting transactions and unusual cash withdrawals. These flags assist in monitoring for potentially fraudulent or financially risky behavior, crucial for maintaining account security and compliance. The application of ZKP guarantees that such sensitive information is disclosed strictly in accordance with user-set boundaries.' },
             ]
           },
         ];
