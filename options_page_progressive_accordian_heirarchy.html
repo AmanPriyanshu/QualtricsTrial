@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Options - Progressive Accordion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .accordion-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .category-section {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .category-header {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            transition: background-color 0.3s, border-radius 0.3s;
+        }
+
+        .category-header:hover {
+            background: #e9ecef;
+        }
+
+        .category-header.expanded {
+            border-bottom: 1px solid #ddd;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .category-description {
+            padding: 15px 20px;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            display: none;
+        }
+
+        .category-description.expanded {
+            display: block;
+        }
+
+        .functions-list {
+            padding: 0 20px;
+            display: none;
+        }
+
+        .functions-list.expanded {
+            display: block;
+            padding-bottom: 15px;
+        }
+
+        .function-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .function-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #004080;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .custom-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            color: #004080;
+            font-size: 16px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .function-title {
+            font-weight: bold;
+            flex-grow: 1;
+        }
+
+        .read-more-btn {
+            color: #004080;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .function-description {
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .function-description.expanded {
+            display: block;
+        }
+
+        .expand-indicator {
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .expand-indicator.expanded {
+            transform: rotate(180deg);
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .next-btn {
+            background: #004080;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .next-btn:hover {
+            background: #003366;
+        }
+
+        .next-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Select Data Categories and Functions</h1>
+        </header>
+
+        <div class="accordion-container">
+            <div id="categories-list">
+                <!-- Categories will be inserted here -->
+            </div>
+
+            <div class="button-container">
+                <button class="next-btn" onclick="handleNext()" disabled>Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Insert categories array here
+        const categories = [
+            {
+                id: 'personal-info',
+                text: 'Account Aggregation (Personal Information)',
+                description: 'This category encompasses the foundational data elements that uniquely identify a user within financial systems, such as the Permanent Account Number (PAN), bank account numbers, and types of bank accounts. These identifiers are crucial for conducting secure transactions and are often required by regulatory bodies to ensure compliance with anti-money laundering (AML) and know your customer (KYC) regulations. Accurate collection and secure handling of this information are paramount for maintaining customer trust and the integrity of financial transactions. Each data element in this category is handled with stringent security measures, including the use of Zero-Knowledge Proofs (ZKP) to ensure purpose specification compliance without revealing the underlying data.',
+                functions: [
+                { 
+                    id: 'pan-number', 
+                    text: 'Permanent Account Number of the user',
+                    description: 'A Permanent Account Number (PAN) is a unique 10-digit identifier issued by the Indian government for tax purposes. This information will be used solely for mandatory KYC verification and tax compliance. Our privacy-preserving technology ensures we only verify its authenticity without accessing or storing the actual number - no analysis or profiling will be performed.'
+                },
+                {
+                    id: 'bank-account-number',
+                    text: 'Bank account number of the user',
+                    description: 'A bank account number is your unique identifier at your bank, used to distinguish your account from others. This will be used exclusively for routing transactions and verifying account ownership. Our secure computation ensures the number is never exposed or stored in its original form and will only be used to validate your transactions - no behavioral analysis or profiling will be done.'
+                },
+                {
+                    id: 'bank-account-type',
+                    text: 'Bank account type of the user',
+                    description: 'Account type indicates whether your account is savings, current, or fixed deposit, each with different features and rules. This information will be used strictly to determine applicable transaction rules and limits. Through privacy-preserving computation, we only verify the type without storing it - no inferences about your banking preferences or financial status will be made.'
+                }
+                ]
+            },
+            {
+                id: 'account-balances',
+                text: 'Account Balances',
+                description: 'This category records the fluctuating states of a user’s financial assets in their bank accounts, tracking balances across different points in time. Such data is fundamental for personal finance management, loan eligibility assessments, and financial planning. Accurately monitoring these balances enables users and financial institutions to gauge financial health and liquidity. Each balance-related function under this category uses Zero-Knowledge Proofs to uphold the principle of minimum disclosure, ensuring that only the requisite data for a specific purpose is shared while maintaining user privacy.',
+                functions: [
+                {
+                    id: 'latest-account-value',
+                    text: 'Amount value of the account as of the latest date',
+                    description: 'Your current account balance shows how much money you currently have available. This will be used solely to verify fund availability for transactions. Our privacy-preserving technology ensures we only confirm if sufficient funds exist without accessing or storing your actual balance - no analysis of spending capacity or financial health will be performed.'
+                },
+                {
+                    id: 'end-of-month-balances',
+                    text: 'Balances as on the end of the month',
+                    description: 'End-of-month balance is your account balance on the last day of each month. This will be used exclusively for mandatory regulatory reporting and account maintenance. Through secure computation, we only process the minimum required information - no patterns or trends will be analyzed.'
+                },
+                {
+                    id: 'daily-balances',
+                    text: 'End of day balances for every day of the month',
+                    description: 'Daily balance shows your account balance at the end of each day. This will be used strictly for transaction verification and fraud prevention. Our technology ensures we only check for suspicious patterns without storing or analyzing your day-to-day financial behavior - no profiling or spending analysis will be conducted.'
+                }
+                ]
+            },
+            {
+                id: 'transaction-summary',
+                text: 'Transaction Summary',
+                description: 'This category aggregates transactional data across a user’s accounts, summarizing credit and debit activities. This overview aids users in tracking their financial operations over time, helping detect patterns and potential discrepancies. It also serves as a foundation for automated financial advice and anomaly detection systems in banking. By integrating ZKP, we provide assurance that transaction summaries are shared exclusively under the terms agreed to by the user, enhancing data privacy and security.',
+                functions: [
+                {
+                    id: 'total-credited',
+                    text: "Total amount credited to the user's account",
+                    description: 'Credits are all incoming money transfers to your account. This information will be used only to verify income for service eligibility. Our secure computation ensures we only validate total amounts without accessing individual transactions - no analysis of income sources or patterns will be performed.'
+                },
+                {
+                    id: 'total-debited',
+                    text: "Total amount debited from the user's account",
+                    description: 'Debits are all outgoing payments or withdrawals from your account. This will be used exclusively for fraud detection and account security. Through privacy-preserving computation, we only check for suspicious patterns without analyzing your spending habits or preferences.'
+                },
+                {
+                    id: 'average-salary',
+                    text: 'The 6 month average salary of the user',
+                    description: 'Average salary calculates your typical monthly income over six months. This will be used solely for service eligibility verification. Our technology ensures we only compute the average without accessing individual salary deposits - no profiling or income analysis will be conducted.'
+                },
+                {
+                    id: 'cash-deposit-ratio',
+                    text: 'The monthly cash deposit to total credit amount ratio',
+                    description: 'This ratio compares your cash deposits to total incoming money. This will be used strictly for regulatory compliance and fraud prevention. Through secure computation, we only verify the ratio without analyzing deposit patterns or preferences - no assumptions about cash usage will be made.'
+                },
+                {
+                    id: 'outward-cheque-bounces',
+                    text: 'Total number of outward cheque bounces',
+                    description: 'Cheque bounces occur when there are insufficient funds to honor a cheque payment. This will be used only for account risk assessment. Our privacy-preserving technology ensures we only count occurrences without storing details - no judgments about financial responsibility will be made.'
+                }
+                ]
+            },
+            {
+                id: 'expense-analysis',
+                text: 'Expense Analysis',
+                description: 'This category provides a detailed breakdown of user expenditures, categorizing them into various types such as groceries, utilities, and discretionary spending. This analysis is instrumental for personal budgeting, financial advising, and identifying potential savings areas. Insights derived from expense analysis can also support targeted marketing and personalized financial product offerings. All data sharing regarding expense analysis adheres to strict privacy standards, with ZKP ensuring that information is disclosed only in accordance with specific consents.',
+                functions: [
+                {
+                    id: 'expense-classification',
+                    text: "Detailed classification of the user's monthly expenses",
+                    description: 'Expense classification groups your transactions into categories like groceries, utilities, etc. This will be used exclusively for providing you spending insights. Our secure computation ensures we only categorize transactions without storing details - no analysis of lifestyle or preferences will be performed.'
+                }
+                ]
+            },
+            {
+                id: 'financial-ratios',
+                text: 'Financial Ratios',
+                description: 'Financial ratios are critical metrics that provide insights into a user’s financial health, leveraging data on income, debts, expenses, and more. These ratios are used by financial institutions for assessing creditworthiness, investment potential, and overall financial stability. Common ratios include debt-to-income and savings rate, each offering distinct insights that can guide financial decision-making. Our implementation of ZKP ensures that these sensitive financial ratios are shared only according to the specific purposes authorized by the user, maintaining privacy and data integrity.',
+                functions: [
+                {
+                    id: 'foir',
+                    text: 'Financial Obligation Ratio (FOIR)',
+                    description: 'FOIR shows what percentage of your income goes toward debt payments. This will be used solely for service eligibility assessment. Through privacy-preserving computation, we only calculate the ratio without accessing detailed income or debt information - no judgments about financial habits will be made.'
+                },
+                {
+                    id: 'betting-cash-flags',
+                    text: 'Betting and Cash Withdrawal Flags',
+                    description: 'These flags identify potentially high-risk transaction patterns. This will be used strictly for account security and fraud prevention. Our technology ensures we only detect patterns without analyzing individual transactions - no assumptions about personal activities will be made.'
+                }
+                ]
+            }
+        ];
+
+        let selectedFunctions = new Map(); // Maps category IDs to sets of selected function IDs
+
+        function createCategorySection(category) {
+            const section = document.createElement('div');
+            section.className = 'category-section';
+            section.innerHTML = `
+                <div class="category-header" onclick="toggleCategory(this, '${category.id}')">
+                    <span class="category-title">${category.text}</span>
+                    <span class="expand-indicator">▼</span>
+                </div>
+                <div class="category-description">
+                    ${category.description}
+                </div>
+                <div class="functions-list">
+                    ${category.functions.map(func => `
+                        <div class="function-item">
+                            <div class="function-header">
+                                <div class="custom-checkbox" onclick="toggleFunction(event, '${category.id}', '${func.id}')"></div>
+                                <span class="function-title">${func.text}</span>
+                                <span class="read-more-btn" onclick="toggleReadMore(event, this)">Read more</span>
+                            </div>
+                            <div class="function-description">
+                                ${func.description}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            return section;
+        }
+
+        function toggleCategory(header, categoryId) {
+            header.classList.toggle('expanded');
+            header.querySelector('.expand-indicator').classList.toggle('expanded');
+            
+            const description = header.nextElementSibling;
+            const functionsList = description.nextElementSibling;
+            
+            description.classList.toggle('expanded');
+            functionsList.classList.toggle('expanded');
+        }
+
+        function toggleFunction(event, categoryId, functionId) {
+            event.stopPropagation();
+            const checkbox = event.target;
+            checkbox.classList.toggle('checked');
+
+            if (!selectedFunctions.has(categoryId)) {
+                selectedFunctions.set(categoryId, new Set());
+            }
+
+            const categoryFunctions = selectedFunctions.get(categoryId);
+            if (checkbox.classList.contains('checked')) {
+                categoryFunctions.add(functionId);
+            } else {
+                categoryFunctions.delete(functionId);
+            }
+
+            if (categoryFunctions.size === 0) {
+                selectedFunctions.delete(categoryId);
+            }
+
+            updateNextButton();
+        }
+
+        function toggleReadMore(event, btn) {
+            event.stopPropagation();
+            const description = btn.closest('.function-header').nextElementSibling;
+            description.classList.toggle('expanded');
+            btn.textContent = description.classList.contains('expanded') ? 'Read less' : 'Read more';
+        }
+
+        function updateNextButton() {
+            const nextBtn = document.querySelector('.next-btn');
+            nextBtn.disabled = selectedFunctions.size === 0;
+        }
+
+        function handleNext() {
+            // Convert selected functions to a more readable format
+            const selections = {};
+            selectedFunctions.forEach((functions, categoryId) => {
+                selections[categoryId] = Array.from(functions);
+            });
+            console.log('Selected functions:', selections);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            const categoriesList = document.getElementById('categories-list');
+            categories.forEach(category => {
+                categoriesList.appendChild(createCategorySection(category));
+            });
+        });
+    </script>
+</body>
+</html>
