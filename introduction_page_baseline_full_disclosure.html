@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Implementation Notice (Baseline)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+</head>
+<body>
+    <div class="container mx-auto max-w-3xl p-4">
+        <h1 class="text-2xl font-bold mb-6">Privacy Implementation Notice</h1>
+        
+        <div class="prose">
+          <p class="text-lg">Silent Labs implements a cryptographically secure privacy layer within open banking systems, fundamentally transforming how financial data access is governed and enforced. Our system integrates with account aggregators to establish a zero-trust privacy framework through advanced Multi-Party Computation (MPC) and Threshold Signature Schemes (TSS).</p>
+      
+          <p>When you connect your financial accounts through our platform, we deploy a distributed cryptographic protocol that mathematically binds your privacy preferences to the data processing pipeline. Unlike traditional systems that rely on policy-based access controls, our implementation uses threshold cryptography to split your authorization keys across multiple parties. This ensures that data access requires cryptographic consensus that aligns with your specified privacy parameters.</p>
+      
+          <p>The core of our technology leverages MPC to enable third parties to compute authorized inferences without ever accessing the underlying raw financial data. Through our proprietary implementation of secure multiparty computation protocols, we create cryptographic circuits that precisely match your consent specifications. These circuits ensure that only the explicitly authorized computations can be performed on your data, making it mathematically impossible for third parties to exceed their authorized access scope.</p>
+      
+          <p>Each inference request triggers a distributed computation protocol where the raw data remains encrypted and fragmented. Our TSS implementation ensures that signing keys for data access are never reconstructed in a single location, while our MPC protocol enforces that only pre-approved computational circuits can be executed. This creates a cryptographically enforced privacy boundary where third parties receive only the specific insights you've authorized, with mathematical guarantees that neither the raw data nor unauthorized inferences can be extracted.</p>
+      
+          <h2 class="text-xl font-semibold mt-6 mb-4">How We Protect You</h2>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <ul class="list-disc ml-6">
+              <li>You maintain complete control over what information third parties can access</li>
+              <li>Third parties only receive specific insights you've authorized, never your raw financial data</li>
+              <li>Our proprietary technology mathematically enforces these privacy controls, making unauthorized access impossible</li>
+            </ul>
+          </div>
+      
+          <h2 class="text-xl font-semibold mt-6 mb-4">Your Rights</h2>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <ul class="list-disc ml-6">
+              <li>Choose exactly what data can be analyzed</li>
+              <li>Specify precisely what insights third parties can receive</li>
+              <li>Revoke access at any time</li>
+              <li>Receive transparent information about how your data is used</li>
+            </ul>
+          </div>
+      
+          <p class="mt-6">By proceeding, you're enabling a cryptographically secured privacy framework that provides mathematical guarantees for your data privacy preferences.</p>
+      
+          <button class="mt-6 bg-blue-600 text-white px-6 py-2 rounded">Proceed</button>
+        </div>
+      </div>
+</body>
+</html>
