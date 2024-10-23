@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Consent Options Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #004080;
+            color: white;
+        }
+        a {
+            color: #004080;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Privacy Consent Options Documentation</h1>
+    <p>Explore different implementations of privacy consent interfaces. Each version presents a unique approach to user interaction and information presentation.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>File</th>
+                <th>Explanation</th>
+                <th>Reasoning</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Baseline with Superficial Choices</td>
+                <td><a href="options_page_baseline_with_only_superficial_choices.html">View File</a></td>
+                <td>Minimalist single-level display showing only main categories initially. Clicking reveals a full-page or modal view with function details. All functions for that category presented as descriptive text with no direct checkboxes for functions.</td>
+                <td>Tests user response to a simplified consent interface that reduces cognitive load by limiting initial choices while still providing detailed information on demand.</td>
+            </tr>
+            <tr>
+                <td>Grid Card View</td>
+                <td><a href="options_page_grid_card.html">View File</a></td>
+                <td>Displays all categories as large cards in a grid layout. Each card shows category name and brief description, expanding to full width when clicked to reveal functions as smaller sub-cards.</td>
+                <td>Evaluates how spatial organization and visual hierarchy through card sizing affects user comprehension and decision-making in privacy choices.</td>
+            </tr>
+            <tr>
+                <td>Progressive Accordion Hierarchy</td>
+                <td><a href="options_page_progressive_accordian_heirarchy.html">View File</a></td>
+                <td>Categories expand downward when clicked, revealing indented function checkboxes below. Previous categories remain expanded as users open others, creating a growing, scrollable document.</td>
+                <td>Tests user preference for a continuous, expanding document format that maintains context while progressively revealing more detailed options.</td>
+            </tr>
+            <tr>
+                <td>Stepped Wizard</td>
+                <td><a href="options_page_stepped_wizard.html">View File</a></td>
+                <td>Shows one category at a time with all its functions, using Next/Previous navigation. Includes progress indicator and forces sequential decision-making with fully expanded functions for the current category.</td>
+                <td>Assesses the effectiveness of a guided, linear progression through privacy choices, potentially reducing decision fatigue through structured progression.</td>
+            </tr>
+            <tr>
+                <td>Two-Column Matrix Hierarchy</td>
+                <td><a href="options_page_two_column_matrix_heirarchy.html">View File</a></td>
+                <td>Features a two-column layout with categories in the left column and permanently visible but grayed-out functions in the right column. Selecting a category activates its related functions with clear visual grouping through spacing.</td>
+                <td>Evaluates how maintaining full context visibility while using visual hierarchy affects user understanding and decision-making efficiency.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
