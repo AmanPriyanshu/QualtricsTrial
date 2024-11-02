@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Sharing Preferences</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .category-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+        }
+
+        .category-main {
+            margin-bottom: 1.5rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-label {
+            flex: 1;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 0.3rem;
+            width: 18px;
+            height: 18px;
+        }
+
+        .data-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .description-container {
+            position: relative;
+            margin-left: 2rem;
+        }
+
+        .data-description {
+            color: #666;
+            font-size: 0.95rem;
+            overflow: hidden;
+            max-height: 3em;
+            transition: max-height 0.3s ease;
+        }
+
+        .data-description.expanded {
+            max-height: 500px;
+        }
+
+        .read-more {
+            color: #4a90e2;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .sub-options-toggle {
+            color: #4a90e2;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sub-options-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .sub-options {
+            margin-left: 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .sub-options.expanded {
+            max-height: 2000px;
+            transition: max-height 0.3s ease-in;
+        }
+
+        .data-point {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .sub-options.expanded .data-point {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .button-container {
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        .next-button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .next-button:hover {
+            background: #357abd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Sharing Preferences</h1>
+        <div id="options-container">
+            <!-- Content will be dynamically inserted here -->
+        </div>
+        <div class="button-container">
+            <button class="next-button">Next</button>
+        </div>
+    </div>
+
+    <script>
+        // Content object remains the same
+        const pageContent = {
+            categories: [
+                {
+                    id: "personal_info",
+                    title: "Account Aggregation (Personal Information)",
+                    description: "This category encompasses the foundational data elements that uniquely identify a user within financial systems, such as the Permanent Account Number (PAN), bank account numbers, and types of bank accounts. These identifiers are crucial for conducting secure transactions and are often required by regulatory bodies to ensure compliance with anti-money laundering (AML) and know your customer (KYC) regulations. Accurate collection and secure handling of this information are paramount for maintaining customer trust and the integrity of financial transactions. Each data element in this category is handled with stringent security measures, including the use of Multi-Party Computation (MPC) to ensure purpose specification compliance without revealing the underlying data.",
+                    dataPoints: [
+                        {
+                            id: "pan",
+                            title: "Permanent Account Number of the user",
+                            description: "A Permanent Account Number (PAN) is a unique 10-digit identifier issued by the Indian government for tax purposes. This information will be used solely for mandatory KYC verification and tax compliance. Our privacy-preserving technology ensures we only verify its authenticity without accessing or storing the actual number - no analysis or profiling will be performed."
+                        },
+                        {
+                            id: "account_number",
+                            title: "Bank account number of the user",
+                            description: "A bank account number is your unique identifier at your bank, used to distinguish your account from others. This will be used exclusively for routing transactions and verifying account ownership. Our secure computation ensures the number is never exposed or stored in its original form and will only be used to validate your transactions - no behavioral analysis or profiling will be done."
+                        },
+                        {
+                            id: "account_type",
+                            title: "Bank account type of the user",
+                            description: "Account type indicates whether your account is savings, current, or fixed deposit, each with different features and rules. This information will be used strictly to determine applicable transaction rules and limits. Through privacy-preserving computation, we only verify the type without storing it - no inferences about your banking preferences or financial status will be made."
+                        }
+                    ]
+                },
+                {
+                    id: "balances",
+                    title: "Account Balances",
+                    description: "This category records the fluctuating states of a user's financial assets in their bank accounts, tracking balances across different points in time. Such data is fundamental for personal finance management, loan eligibility assessments, and financial planning. Accurately monitoring these balances enables users and financial institutions to gauge financial health and liquidity. Each balance-related function under this category uses Multi-Party Computation to uphold the principle of minimum disclosure, ensuring that only the requisite data for a specific purpose is shared while maintaining user privacy.",
+                    dataPoints: [
+                        {
+                            id: "current_balance",
+                            title: "Amount value of the account as of the latest date",
+                            description: "Your current account balance shows how much money you currently have available. This will be used solely to verify fund availability for transactions. Our privacy-preserving technology ensures we only confirm if sufficient funds exist without accessing or storing your actual balance - no analysis of spending capacity or financial health will be performed."
+                        },
+                        {
+                            id: "month_end_balance",
+                            title: "Balances as on the end of the month",
+                            description: "End-of-month balance is your account balance on the last day of each month. This will be used exclusively for mandatory regulatory reporting and account maintenance. Through secure computation, we only process the minimum required information - no patterns or trends will be analyzed."
+                        },
+                        {
+                            id: "daily_balance",
+                            title: "End of day balances for every day of the month",
+                            description: "Daily balance shows your account balance at the end of each day. This will be used strictly for transaction verification and fraud prevention. Our technology ensures we only check for suspicious patterns without storing or analyzing your day-to-day financial behavior - no profiling or spending analysis will be conducted."
+                        }
+                    ]
+                },
+                {
+                    id: "transaction",
+                    title: "Transaction Summary",
+                    description: "This category aggregates transactional data across a user’s accounts, summarizing credit and debit activities. This overview aids users in tracking their financial operations over time, helping detect patterns and potential discrepancies. It also serves as a foundation for automated financial advice and anomaly detection systems in banking. By integrating MPC, we provide assurance that transaction summaries are shared exclusively under the terms agreed to by the user, enhancing data privacy and security.",
+                    dataPoints: [
+                        {
+                            id: "total_amount_credit",
+                            title: "Total amount credited to the user's account",
+                            description: "Credits are all incoming money transfers to your account. This information will be used only to verify income for service eligibility. Our secure computation ensures we only validate total amounts without accessing individual transactions - no analysis of income sources or patterns will be performed."
+                        },
+                        {
+                            id: "total_amount_debited",
+                            title: "Total amount debited from the user's account",
+                            description: "Debits are all outgoing payments or withdrawals from your account. This will be used exclusively for fraud detection and account security. Through privacy-preserving computation, we only check for suspicious patterns without analyzing your spending habits or preferences."
+                        },
+                        {
+                            id: "six_month",
+                            title: "The 6 month average salary of the user",
+                            description: "Average salary calculates your typical monthly income over six months. This will be used solely for service eligibility verification. Our technology ensures we only compute the average without accessing individual salary deposits - no profiling or income analysis will be conducted."
+                        },
+                        {
+                            id: "monthly_cash_deposited",
+                            title: "The monthly cash deposit to total credit amount ratio",
+                            description: "This ratio compares your cash deposits to total incoming money. This will be used strictly for regulatory compliance and fraud prevention. Through secure computation, we only verify the ratio without analyzing deposit patterns or preferences - no assumptions about cash usage will be made."
+                        },
+                        {
+                            id: "total_number_cheque_bounces",
+                            title: "Total number of outward cheque bounces",
+                            description: "Cheque bounces occur when there are insufficient funds to honor a cheque payment. This will be used only for account risk assessment. Our privacy-preserving technology ensures we only count occurrences without storing details - no judgments about financial responsibility will be made."
+                        }
+                    ]
+                },
+                {
+                    id: "expense_analysis",
+                    title: "Expense Analysis",
+                    description: "This category provides a detailed breakdown of user expenditures, categorizing them into various types such as groceries, utilities, and discretionary spending. This analysis is instrumental for personal budgeting, financial advising, and identifying potential savings areas. Insights derived from expense analysis can also support targeted marketing and personalized financial product offerings. All data sharing regarding expense analysis adheres to strict privacy standards, with MPC ensuring that information is disclosed only in accordance with specific consents.",
+                    dataPoints: [
+                        {
+                            id: "classification_users_monthly_expenses",
+                            title: "Detailed classification of the user's monthly expenses",
+                            description: "Expense classification groups your transactions into categories like groceries, utilities, etc. This will be used exclusively for providing you spending insights. Our secure computation ensures we only categorize transactions without storing details - no analysis of lifestyle or preferences will be performed."
+                        }
+                    ]
+                },
+                {
+                    id: "financial_ratios",
+                    title: "Financial Ratios",
+                    description: "Financial ratios are critical metrics that provide insights into a user's financial health, leveraging data on income, debts, expenses, and more. These ratios are used by financial institutions for assessing creditworthiness, investment potential, and overall financial stability. Common ratios include debt-to-income and savings rate, each offering distinct insights that can guide financial decision-making. Our implementation of MPC ensures that these sensitive financial ratios are shared only according to the specific purposes authorized by the user, maintaining privacy and data integrity.",
+                    dataPoints: [
+                        {
+                            id: "foir",
+                            title: "Financial Obligation Ratio (FOIR)",
+                            description: "FOIR shows what percentage of your income goes toward debt payments. This will be used solely for service eligibility assessment. Through privacy-preserving computation, we only calculate the ratio without accessing detailed income or debt information - no judgments about financial habits will be made."
+                        },
+                        {
+                            id: "betting_withdrawl_flags",
+                            title: "Betting and Cash Withdrawal Flags",
+                            description: "These flags identify potentially high-risk transaction patterns. This will be used strictly for account security and fraud prevention. Our technology ensures we only detect patterns without analyzing individual transactions - no assumptions about personal activities will be made."
+                        }
+                    ]
+                }
+            ]
+        };
+
+        function createCategorySection(category) {
+            const section = document.createElement('div');
+            section.className = 'category-section';
+            
+            // Main category content
+            section.innerHTML = `
+                <div class="category-main">
+                    <div class="category-header">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="${category.id}">
+                            <div class="checkbox-label">
+                                <label for="${category.id}" class="data-title">${category.title}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description-container">
+                        <div class="data-description" id="desc-${category.id}">${category.description}</div>
+                        <span class="read-more" onclick="toggleDescription('desc-${category.id}', this)">Read more</span>
+                    </div>
+                </div>
+                <button class="sub-options-toggle" onclick="toggleSubOptions('${category.id}')">
+                    View Options
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="sub-options" id="sub-${category.id}">
+                    ${category.dataPoints.map(point => `
+                        <div class="data-point">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="${point.id}">
+                                <div class="checkbox-label">
+                                    <label for="${point.id}" class="data-title">${point.title}</label>
+                                    <div class="description-container">
+                                        <div class="data-description" id="desc-${point.id}">${point.description}</div>
+                                        <span class="read-more" onclick="toggleDescription('desc-${point.id}', this)">Read more</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            return section;
+        }
+
+        function toggleDescription(descId, button) {
+            const description = document.getElementById(descId);
+            description.classList.toggle('expanded');
+            button.textContent = description.classList.contains('expanded') ? 'Read less' : 'Read more';
+        }
+
+        function toggleSubOptions(categoryId) {
+            const subOptions = document.getElementById(`sub-${categoryId}`);
+            const button = subOptions.previousElementSibling;
+            const icon = button.querySelector('.toggle-icon');
+            
+            subOptions.classList.toggle('expanded');
+            icon.classList.toggle('rotated');
+            button.textContent = subOptions.classList.contains('expanded') ? 'Hide Options ' : 'View Options ';
+            button.appendChild(icon);
+        }
+
+        function setupCheckboxes(section) {
+            const mainCheckbox = section.querySelector('.category-header input[type="checkbox"]');
+            const subCheckboxes = section.querySelectorAll('.sub-options input[type="checkbox"]');
+            
+            mainCheckbox.addEventListener('change', () => {
+                subCheckboxes.forEach(checkbox => {
+                    checkbox.checked = mainCheckbox.checked;
+                });
+            });
+
+            subCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    const allChecked = Array.from(subCheckboxes).every(cb => cb.checked);
+                    const anyChecked = Array.from(subCheckboxes).some(cb => cb.checked);
+                    mainCheckbox.checked = allChecked;
+                    mainCheckbox.indeterminate = anyChecked && !allChecked;
+                });
+            });
+        }
+
+        function initialize() {
+            const container = document.getElementById('options-container');
+            pageContent.categories.forEach(category => {
+                const section = createCategorySection(category);
+                container.appendChild(section);
+                setupCheckboxes(section);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>
