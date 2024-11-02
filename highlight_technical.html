@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Implementation Notice - Silence Laboratories</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Typography improvements */
+        .prose {
+            max-width: 65ch;
+            line-height: 1.6;
+        }
+
+        .prose p {
+            margin-bottom: 1.5em;
+            color: #374151;
+        }
+
+        .prose ul {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .prose li {
+            margin-bottom: 0.5em;
+            color: #374151;
+        }
+
+        /* Highlight styles */
+        .highlight-primary {
+            background: linear-gradient(120deg, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        .highlight-security {
+            background: linear-gradient(120deg, rgba(52, 211, 153, 0.2) 0%, rgba(52, 211, 153, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        .highlight-tech {
+            background: linear-gradient(120deg, rgba(167, 139, 250, 0.2) 0%, rgba(167, 139, 250, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        .highlight-control {
+            background: linear-gradient(120deg, rgba(251, 146, 60, 0.2) 0%, rgba(251, 146, 60, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        /* Smooth transitions */
+        .hover-transform {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hover-transform:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Custom list styling */
+        .custom-list {
+            list-style-type: none;
+            padding-left: 1.5em;
+        }
+
+        .custom-list li::before {
+            content: "•";
+            color: #2563EB;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Legend styling */
+        .highlight-legend {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-3xl px-4 py-8">
+        <!-- Privacy Notice Card -->
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                Privacy Implementation Notice
+            </h1>
+
+            <!-- Legend -->
+            <div class="highlight-legend">
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: rgba(96, 165, 250, 0.2)"></div>
+                    <span>Key Concepts</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: rgba(52, 211, 153, 0.2)"></div>
+                    <span>Security Features</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: rgba(167, 139, 250, 0.2)"></div>
+                    <span>Technical Terms</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: rgba(251, 146, 60, 0.2)"></div>
+                    <span>User Control</span>
+                </div>
+            </div>
+            
+            <div class="prose">
+                <p>
+                    Silence Laboratories implements a <span class="highlight-security">cryptographically secure privacy layer</span> within
+                    open banking systems, fundamentally transforming how financial data
+                    access is governed and enforced. Our system integrates with account
+                    aggregators to establish a <span class="highlight-primary">zero-trust privacy framework</span> through advanced
+                    <span class="highlight-tech">Multi-Party Computation (MPC)</span> and <span class="highlight-tech">Threshold Signature Schemes (TSS)</span>.
+                </p>
+
+                <p>
+                    When you connect your financial accounts through our platform, we deploy
+                    a <span class="highlight-security">distributed cryptographic protocol</span> that mathematically binds your
+                    <span class="highlight-control">privacy preferences</span> to the data processing pipeline. Unlike traditional
+                    systems that rely on policy-based access controls, our implementation
+                    uses <span class="highlight-tech">threshold cryptography</span> to split your authorization keys across
+                    multiple parties. This ensures that data access requires <span class="highlight-primary">cryptographic
+                    consensus</span> that aligns with your specified privacy parameters.
+                </p>
+
+                <p>
+                    The core of our technology leverages <span class="highlight-tech">MPC</span> to enable third parties to
+                    compute authorized inferences without ever accessing the underlying raw
+                    financial data. Through our proprietary implementation of <span class="highlight-security">secure
+                    multiparty computation protocols</span>, we create <span class="highlight-tech">cryptographic circuits</span> that
+                    precisely match your <span class="highlight-control">consent specifications</span>. These circuits ensure that
+                    only the explicitly authorized computations can be performed on your
+                    data, making it <span class="highlight-primary">mathematically impossible</span> for third parties to exceed
+                    their authorized access scope.
+                </p>
+
+                <p>
+                    Each inference request triggers a <span class="highlight-security">distributed computation protocol</span> where
+                    the raw data remains encrypted and fragmented. Our <span class="highlight-tech">TSS</span> implementation
+                    ensures that signing keys for data access are never reconstructed in a
+                    single location, while our <span class="highlight-tech">MPC protocol</span> enforces that only pre-approved
+                    computational circuits can be executed. This creates a <span class="highlight-primary">cryptographically
+                    enforced privacy boundary</span> where third parties receive only the specific
+                    insights you've authorized, with mathematical guarantees that neither
+                    the raw data nor unauthorized inferences can be extracted.
+                </p>
+
+                <!-- How We Protect You Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    How We Protect You
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <ul class="custom-list space-y-2">
+                        <li>You maintain <span class="highlight-control">complete control</span> over what information third parties can access</li>
+                        <li>Third parties only receive <span class="highlight-primary">specific insights</span> you've authorized, never your raw financial data</li>
+                        <li>Our <span class="highlight-security">proprietary technology</span> mathematically enforces these privacy controls, making unauthorized access impossible</li>
+                    </ul>
+                </div>
+
+                <!-- Your Rights Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    Your Rights
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <ul class="custom-list space-y-2">
+                        <li><span class="highlight-control">Choose exactly</span> what data can be analyzed</li>
+                        <li><span class="highlight-control">Specify precisely</span> what insights third parties can receive</li>
+                        <li><span class="highlight-control">Revoke access</span> at any time</li>
+                        <li>Receive transparent information about how your data is used</li>
+                    </ul>
+                </div>
+
+                <p class="text-gray-700 mt-8">
+                    By proceeding, you're enabling a <span class="highlight-security">cryptographically secured privacy
+                    framework</span> that provides <span class="highlight-primary">mathematical guarantees</span> for your data privacy
+                    preferences.
+                </p>
+
+                <!-- Proceed Button -->
+                <div class="mt-8 flex justify-center">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg hover-transform focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Proceed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-12">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-600">
+            <p>&copy; 2024 Silence Laboratories. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
