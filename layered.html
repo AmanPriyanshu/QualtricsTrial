@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Implementation Notice - Silence Laboratories</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Typography improvements */
+        .prose {
+            max-width: 65ch;
+            line-height: 1.6;
+        }
+
+        .prose p {
+            margin-bottom: 1.5em;
+            color: #374151;
+        }
+
+        .prose ul {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .prose li {
+            margin-bottom: 0.5em;
+            color: #374151;
+        }
+
+        /* Smooth transitions */
+        .hover-transform {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hover-transform:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Custom list styling */
+        .custom-list {
+            list-style-type: none;
+            padding-left: 1.5em;
+        }
+
+        .custom-list li::before {
+            content: "•";
+            color: #2563EB;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-3xl px-4 py-8">
+        <!-- Privacy Notice Card -->
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                Privacy Implementation Notice
+            </h1>
+            
+            <div class="prose">
+                <!-- Layer 1: Quick Summary -->
+                <div class="bg-white p-6 rounded-lg border-l-4 border-blue-600 mb-8">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-3">Key Points</h2>
+                    <ul class="custom-list space-y-2">
+                        <li>Advanced cryptographic system protecting your financial data</li>
+                        <li>Zero-trust privacy framework using MPC and TSS</li>
+                        <li>Mathematical guarantee of privacy preferences</li>
+                        <li>Third parties never access raw data</li>
+                    </ul>
+                </div>
+            
+                <!-- Layer 2: Core Technology -->
+                <div class="mb-8">
+                    <details class="bg-gray-50 rounded-lg" open>
+                        <summary class="cursor-pointer p-6 text-lg font-semibold text-gray-900">
+                            Our Technology Framework
+                        </summary>
+                        <div class="p-6 pt-0">
+                            <p>
+                                Silence Laboratories implements a cryptographically secure privacy layer within
+                                open banking systems, fundamentally transforming how financial data
+                                access is governed and enforced. Our system integrates with account
+                                aggregators to establish a zero-trust privacy framework through advanced
+                                Multi-Party Computation (MPC) and Threshold Signature Schemes (TSS).
+                            </p>
+                            <p>
+                                When you connect your financial accounts through our platform, we deploy
+                                a distributed cryptographic protocol that mathematically binds your
+                                privacy preferences to the data processing pipeline. Unlike traditional
+                                systems that rely on policy-based access controls, our implementation
+                                uses threshold cryptography to split your authorization keys across
+                                multiple parties.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            
+                <!-- Layer 3: Technical Implementation -->
+                <div class="mb-8">
+                    <details class="bg-gray-50 rounded-lg" open>
+                        <summary class="cursor-pointer p-6 text-lg font-semibold text-gray-900">
+                            Technical Implementation Details
+                        </summary>
+                        <div class="p-6 pt-0">
+                            <p>
+                                The core of our technology leverages MPC to enable third parties to
+                                compute authorized inferences without ever accessing the underlying raw
+                                financial data. Through our proprietary implementation of secure
+                                multiparty computation protocols, we create cryptographic circuits that
+                                precisely match your consent specifications. These circuits ensure that
+                                only the explicitly authorized computations can be performed on your
+                                data, making it mathematically impossible for third parties to exceed
+                                their authorized access scope.
+                            </p>
+                            <p>
+                                Each inference request triggers a distributed computation protocol where
+                                the raw data remains encrypted and fragmented. Our TSS implementation
+                                ensures that signing keys for data access are never reconstructed in a
+                                single location, while our MPC protocol enforces that only pre-approved
+                                computational circuits can be executed.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            
+                <!-- Layer 4: Practical Implementation -->
+                <div class="mb-8">
+                    <details class="bg-gray-50 rounded-lg" open>
+                        <summary class="cursor-pointer p-6 text-lg font-semibold text-gray-900">
+                            Privacy Enforcement Mechanism
+                        </summary>
+                        <div class="p-6 pt-0">
+                            <p>
+                                This creates a cryptographically enforced privacy boundary where third parties 
+                                receive only the specific insights you've authorized, with mathematical 
+                                guarantees that neither the raw data nor unauthorized inferences can be extracted.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            
+                <!-- How We Protect You Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    How We Protect You
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <ul class="custom-list space-y-2">
+                        <li>You maintain complete control over what information third parties can access</li>
+                        <li>Third parties only receive specific insights you've authorized, never your raw financial data</li>
+                        <li>Our proprietary technology mathematically enforces these privacy controls, making unauthorized access impossible</li>
+                    </ul>
+                </div>
+            
+                <!-- Your Rights Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    Your Rights
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <ul class="custom-list space-y-2">
+                        <li>Choose exactly what data can be analyzed</li>
+                        <li>Specify precisely what insights third parties can receive</li>
+                        <li>Revoke access at any time</li>
+                        <li>Receive transparent information about how your data is used</li>
+                    </ul>
+                </div>
+            
+                <p class="text-gray-700 mt-8">
+                    By proceeding, you're enabling a cryptographically secured privacy
+                    framework that provides mathematical guarantees for your data privacy
+                    preferences.
+                </p>
+            
+                <!-- Proceed Button -->
+                <div class="mt-8 flex justify-center">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg hover-transform focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Proceed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-12">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-600">
+            <p>&copy; 2024 Silence Laboratories. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

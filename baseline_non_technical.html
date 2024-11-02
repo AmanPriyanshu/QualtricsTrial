@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Implementation Notice - Silence Laboratories</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Typography improvements */
+        .prose {
+            max-width: 65ch;
+            line-height: 1.6;
+        }
+
+        .prose p {
+            margin-bottom: 1.5em;
+            color: #374151;
+        }
+
+        .prose ul {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .prose li {
+            margin-bottom: 0.5em;
+            color: #374151;
+        }
+
+        /* Smooth transitions */
+        .hover-transform {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hover-transform:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Custom list styling */
+        .custom-list {
+            list-style-type: none;
+            padding-left: 1.5em;
+        }
+
+        .custom-list li::before {
+            content: "•";
+            color: #2563EB;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-3xl px-4 py-8">
+        <!-- Privacy Notice Card -->
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                Privacy Implementation Notice
+            </h1>
+            
+            <div class="prose">
+                <p>
+                    Silence Laboratories creates a secure privacy shield for your banking data, completely changing how your financial information is protected and shared. Our system works with banking data providers to create a protected environment where your privacy choices are enforced through advanced security measures.
+                </p>
+            
+                <p>
+                    When you link your bank accounts through our platform, we create a secure system that automatically enforces your privacy choices. Unlike traditional systems that rely on simple permission settings, our technology splits your access keys into multiple pieces. This means that anyone trying to access your data needs to follow your exact privacy preferences - it's not just a policy, it's built into the system itself.
+                </p>
+            
+                <p>
+                    At the heart of our technology is a system that lets other services analyze your data without ever seeing the actual numbers in your account. We create secure calculation methods that exactly match what you've allowed. This means that others can only perform the specific calculations you've approved, and it's technically impossible for them to do anything else with your data.
+                </p>
+            
+                <p>
+                    Every time someone requests to analyze your data, our system processes it in a way that keeps it encrypted and split into pieces. The keys needed to access your data are never put together in one place, and our security system makes sure that only the calculations you've approved can happen. This creates a strong privacy barrier where other services only receive the specific insights you've allowed them to see, and we can guarantee they can't access your raw data or perform unauthorized analysis.
+                </p>
+            
+                <!-- How We Protect You Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    How We Protect You
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <ul class="custom-list space-y-2">
+                        <li>You're always in control of what information others can see</li>
+                        <li>Companies only get the specific insights you allow, never your actual banking data</li>
+                        <li>Our technology automatically enforces these privacy rules, making it impossible to bypass them</li>
+                    </ul>
+                </div>
+            
+                <!-- Your Rights Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    Your Rights
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <ul class="custom-list space-y-2">
+                        <li>Select which parts of your financial data can be analyzed</li>
+                        <li>Choose exactly what others can learn from your data</li>
+                        <li>Stop sharing access whenever you want</li>
+                        <li>Get clear information about how your data is being used</li>
+                    </ul>
+                </div>
+            
+                <p class="text-gray-700 mt-8">
+                    By continuing, you'll activate our secure privacy system that guarantees your data privacy choices will be followed exactly as you set them.
+                </p>
+            
+                <!-- Proceed Button -->
+                <div class="mt-8 flex justify-center">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg hover-transform focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Proceed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-12">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-600">
+            <p>&copy; 2024 Silence Laboratories. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Implementation Notice - Silence Laboratories</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Base styles from previous version */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .prose {
+            max-width: 65ch;
+            line-height: 1.6;
+        }
+
+        .prose p {
+            margin-bottom: 1.5em;
+            color: #374151;
+        }
+
+        .prose ul {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .prose li {
+            margin-bottom: 0.5em;
+            color: #374151;
+        }
+
+        .hover-transform {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hover-transform:hover {
+            transform: translateY(-2px);
+        }
+
+        .custom-list {
+            list-style-type: none;
+            padding-left: 1.5em;
+        }
+
+        .custom-list li::before {
+            content: "•";
+            color: #2563EB;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* New styles for visualizations */
+        .visual-container {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .visual-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .flow-arrow {
+            animation: flowPulse 2s infinite;
+        }
+
+        @keyframes flowPulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        .highlight-pulse {
+            animation: highlightPulse 3s infinite;
+        }
+
+        @keyframes highlightPulse {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+            100% { filter: brightness(1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-3xl px-4 py-8">
+        <!-- Privacy Notice Card -->
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                Privacy Implementation Notice
+            </h1>
+            
+            <div class="prose">
+                <div class="visual-container">
+                    <svg viewBox="0 0 400 200" class="w-full">
+                        <!-- Bank icon -->
+                        <rect x="20" y="60" width="80" height="80" rx="10" fill="#3B82F6"/>
+                        <text x="60" y="110" text-anchor="middle" fill="white" font-size="12">Your Bank</text>
+                        
+                        <!-- Silence Labs Shield -->
+                        <path d="M200 30 L240 50 L240 90 L200 110 L160 90 L160 50 Z" fill="#2563EB" class="highlight-pulse"/>
+                        <text x="200" y="80" text-anchor="middle" fill="white" font-size="10">Silence Labs</text>
+                        
+                        <!-- Third Party -->
+                        <rect x="300" y="60" width="80" height="80" rx="10" fill="#6B7280"/>
+                        <text x="340" y="110" text-anchor="middle" fill="white" font-size="12">Third Party</text>
+                        
+                        <!-- Connecting arrows -->
+                        <path d="M100 100 L160 100" stroke="#94A3B8" stroke-width="2" class="flow-arrow"/>
+                        <path d="M240 100 L300 100" stroke="#94A3B8" stroke-width="2" class="flow-arrow"/>
+                    </svg>
+                </div>
+
+                <p>
+                    Silence Laboratories creates a secure privacy shield for your banking data. Our system works like a secure vault between your bank and any third parties:
+                </p>
+
+                <div class="visual-container">
+                    <svg viewBox="0 0 400 250" class="w-full">
+                        <!-- Data fragmentation visualization -->
+                        <rect x="50" y="50" width="300" height="150" rx="15" fill="#EFF6FF"/>
+                        
+                        <!-- Original data representation -->
+                        <rect x="70" y="70" width="60" height="30" fill="#3B82F6"/>
+                        <text x="100" y="90" text-anchor="middle" fill="white" font-size="12">Data</text>
+                        
+                        <!-- Arrows showing splitting -->
+                        <path d="M130 85 L180 65" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <path d="M130 85 L180 105" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <path d="M130 85 L180 145" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Split pieces -->
+                        <rect x="200" y="50" width="40" height="20" fill="#60A5FA"/>
+                        <rect x="200" y="90" width="40" height="20" fill="#60A5FA"/>
+                        <rect x="200" y="130" width="40" height="20" fill="#60A5FA"/>
+                        
+                        <!-- Arrows showing reconstruction -->
+                        <path d="M240 60 L290 85" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <path d="M240 100 L290 85" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <path d="M240 140 L290 85" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Result -->
+                        <rect x="290" y="70" width="40" height="30" fill="#2563EB"/>
+                        <text x="310" y="90" text-anchor="middle" fill="white" font-size="10">Result</text>
+                        
+                        <!-- Arrow definitions -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#94A3B8"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+
+                <p>
+                    When you connect your accounts, we split your data into encrypted pieces. Only when all the right pieces come together in the right way can any analysis happen:
+                </p>
+
+                <!-- How We Protect You Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    How We Protect You
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <div class="visual-container bg-white">
+                        <svg viewBox="0 0 400 150" class="w-full">
+                            <!-- Protection visualization -->
+                            <circle cx="200" cy="75" r="60" fill="none" stroke="#3B82F6" stroke-width="4"/>
+                            <circle cx="200" cy="75" r="45" fill="none" stroke="#60A5FA" stroke-width="4" class="highlight-pulse"/>
+                            <circle cx="200" cy="75" r="30" fill="#93C5FD"/>
+                            <text x="200" y="80" text-anchor="middle" fill="#1E40AF" font-size="14">Your Data</text>
+                        </svg>
+                    </div>
+                    <ul class="custom-list space-y-2">
+                        <li>You maintain complete control over what information third parties can access</li>
+                        <li>Third parties only receive specific insights you've authorized, never your raw financial data</li>
+                        <li>Our technology automatically enforces these privacy controls</li>
+                    </ul>
+                </div>
+
+                <!-- Your Rights Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    Your Rights
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="visual-container bg-white p-4">
+                            <svg viewBox="0 0 100 100" class="w-full">
+                                <circle cx="50" cy="50" r="40" fill="#BFDBFE"/>
+                                <path d="M35 50 L45 60 L65 40" stroke="#2563EB" stroke-width="4" fill="none"/>
+                            </svg>
+                            <p class="text-center text-sm mt-2">Choose Data Access</p>
+                        </div>
+                        <div class="visual-container bg-white p-4">
+                            <svg viewBox="0 0 100 100" class="w-full">
+                                <rect x="20" y="30" width="60" height="40" rx="5" fill="#BFDBFE"/>
+                                <line x1="30" y1="45" x2="70" y2="45" stroke="#2563EB" stroke-width="4"/>
+                                <line x1="30" y1="55" x2="50" y2="55" stroke="#2563EB" stroke-width="4"/>
+                            </svg>
+                            <p class="text-center text-sm mt-2">Specify Insights</p>
+                        </div>
+                    </div>
+                    <ul class="custom-list space-y-2">
+                        <li>Select which parts of your financial data can be analyzed</li>
+                        <li>Choose exactly what others can learn from your data</li>
+                        <li>Stop sharing access whenever you want</li>
+                        <li>Get clear information about how your data is being used</li>
+                    </ul>
+                </div>
+
+                <p class="text-gray-700 mt-8">
+                    By continuing, you'll activate our secure privacy system that guarantees your data privacy choices will be followed exactly as you set them.
+                </p>
+
+                <!-- Proceed Button -->
+                <div class="mt-8 flex justify-center">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg hover-transform focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Proceed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-12">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-600">
+            <p>&copy; 2024 Silence Laboratories. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
