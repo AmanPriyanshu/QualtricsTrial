@@ -110,88 +110,88 @@
                 {
                     id: "personal_info",
                     title: "Account Aggregation (Personal Information)",
-                    description: "This category encompasses the foundational data elements that uniquely identify a user within financial systems, such as the Permanent Account Number (PAN), bank account numbers, and types of bank accounts. These identifiers are crucial for conducting secure transactions and are often required by regulatory bodies to ensure compliance with anti-money laundering (AML) and know your customer (KYC) regulations. Accurate collection and secure handling of this information are paramount for maintaining customer trust and the integrity of financial transactions. Each data element in this category is handled with stringent security measures, including the use of Multi-Party Computation (MPC) to ensure purpose specification compliance without revealing the underlying data.",
+                    description: "This category encompasses the foundational data elements that uniquely identify a user within financial systems, such as the Permanent Account Number (PAN), bank account numbers, and types of bank accounts. These identifiers are not just verified but are also safeguarded to ensure data integrity and compliance. They are required by regulatory bodies to ensure compliance with anti-money laundering (AML) and know-your-customer (KYC) regulations. ",
                     dataPoints: [
                         {
                             id: "pan",
                             title: "Permanent Account Number of the user",
-                            description: "A Permanent Account Number (PAN) is a unique 10-digit identifier issued by the Indian government for tax purposes. This information will be used solely for mandatory KYC verification and tax compliance. Our privacy-preserving technology ensures we only verify its authenticity without accessing or storing the actual number - no analysis or profiling will be performed."
+                            description: "A Permanent Account Number (PAN) is a unique 10-digit identifier issued by the Indian government for tax purposes."
                         },
                         {
                             id: "account_number",
                             title: "Bank account number of the user",
-                            description: "A bank account number is your unique identifier at your bank, used to distinguish your account from others. This will be used exclusively for routing transactions and verifying account ownership. Our secure computation ensures the number is never exposed or stored in its original form and will only be used to validate your transactions - no behavioral analysis or profiling will be done."
+                            description: "A bank account number is your unique identifier at your bank, used to distinguish your account from others."
                         },
                         {
                             id: "account_type",
                             title: "Bank account type of the user",
-                            description: "Account type indicates whether your account is savings, current, or fixed deposit, each with different features and rules. This information will be used strictly to determine applicable transaction rules and limits. Through privacy-preserving computation, we only verify the type without storing it - no inferences about your banking preferences or financial status will be made."
+                            description: "Account type indicates whether your account is savings, current, or fixed deposit, each with different features and rules."
                         }
                     ]
                 },
                 {
                     id: "balances",
                     title: "Account Balances",
-                    description: "This category records the fluctuating states of a user's financial assets in their bank accounts, tracking balances across different points in time. Such data is fundamental for personal finance management, loan eligibility assessments, and financial planning. Accurately monitoring these balances enables users and financial institutions to gauge financial health and liquidity. Each balance-related function under this category uses Multi-Party Computation to uphold the principle of minimum disclosure, ensuring that only the requisite data for a specific purpose is shared while maintaining user privacy.",
+                    description: "This category records the fluctuating states of a user's financial assets in their bank accounts, tracking balances across different points in time. Such data is fundamental for personal finance management, loan eligibility assessments, and financial planning. Accurately monitoring these balances enables users and financial institutions to gauge financial health and liquidity. Each balance-related function under this category uses Secure Computation to uphold the principle of minimum disclosure, ensuring that only the requisite inference for a specific purpose is shared while maximizing user privacy.",
                     dataPoints: [
                         {
                             id: "current_balance",
                             title: "Amount value of the account as of the latest date",
-                            description: "Your current account balance shows how much money you currently have available. This will be used solely to verify fund availability for transactions. Our privacy-preserving technology ensures we only confirm if sufficient funds exist without accessing or storing your actual balance - no analysis of spending capacity or financial health will be performed."
+                            description: "Your current account balance shows how much money you currently have available."
                         },
                         {
                             id: "month_end_balance",
                             title: "Balances as on the end of the month",
-                            description: "End-of-month balance is your account balance on the last day of each month. This will be used exclusively for mandatory regulatory reporting and account maintenance. Through secure computation, we only process the minimum required information - no patterns or trends will be analyzed."
+                            description: "End-of-month balance is your account balance on the last day of each month."
                         },
                         {
                             id: "daily_balance",
                             title: "End of day balances for every day of the month",
-                            description: "Daily balance shows your account balance at the end of each day. This will be used strictly for transaction verification and fraud prevention. Our technology ensures we only check for suspicious patterns without storing or analyzing your day-to-day financial behavior - no profiling or spending analysis will be conducted."
+                            description: "Daily balance shows your account balance at the end of each day."
                         }
                     ]
                 },
                 {
                     id: "transaction",
                     title: "Transaction Summary",
-                    description: "This category aggregates transactional data across a user’s accounts, summarizing credit and debit activities. This overview aids users in tracking their financial operations over time, helping detect patterns and potential discrepancies. It also serves as a foundation for automated financial advice and anomaly detection systems in banking. By integrating MPC, we provide assurance that transaction summaries are shared exclusively under the terms agreed to by the user, enhancing data privacy and security.",
+                    description: "This category aggregates transactional data across a user's accounts, summarizing credit and debit activities. This overview aids users in tracking their financial operations over time, helping detect patterns and potential discrepancies. It also serves as a foundation for automated financial advice and anomaly detection systems in banking. By integrating MPC, we provide assurance that transaction summaries are shared exclusively under the terms agreed to by the user, enhancing data privacy and security.",
                     dataPoints: [
                         {
                             id: "total_amount_credit",
                             title: "Total amount credited to the user's account",
-                            description: "Credits are all incoming money transfers to your account. This information will be used only to verify income for service eligibility. Our secure computation ensures we only validate total amounts without accessing individual transactions - no analysis of income sources or patterns will be performed."
+                            description: "Credits are all incoming money transfers to your account."
                         },
                         {
                             id: "total_amount_debited",
                             title: "Total amount debited from the user's account",
-                            description: "Debits are all outgoing payments or withdrawals from your account. This will be used exclusively for fraud detection and account security. Through privacy-preserving computation, we only check for suspicious patterns without analyzing your spending habits or preferences."
+                            description: "Debits are all outgoing payments or withdrawals from your account."
                         },
                         {
                             id: "six_month",
                             title: "The 6 month average salary of the user",
-                            description: "Average salary calculates your typical monthly income over six months. This will be used solely for service eligibility verification. Our technology ensures we only compute the average without accessing individual salary deposits - no profiling or income analysis will be conducted."
+                            description: "Average salary calculates your typical monthly income over six months"
                         },
                         {
                             id: "monthly_cash_deposited",
                             title: "The monthly cash deposit to total credit amount ratio",
-                            description: "This ratio compares your cash deposits to total incoming money. This will be used strictly for regulatory compliance and fraud prevention. Through secure computation, we only verify the ratio without analyzing deposit patterns or preferences - no assumptions about cash usage will be made."
+                            description: "This ratio compares your cash deposits to total incoming money."
                         },
                         {
                             id: "total_number_cheque_bounces",
                             title: "Total number of outward cheque bounces",
-                            description: "Cheque bounces occur when there are insufficient funds to honor a cheque payment. This will be used only for account risk assessment. Our privacy-preserving technology ensures we only count occurrences without storing details - no judgments about financial responsibility will be made."
+                            description: "Cheque bounces occur when there are insufficient funds to honor a cheque payment."
                         }
                     ]
                 },
                 {
                     id: "expense_analysis",
                     title: "Expense Analysis",
-                    description: "This category provides a detailed breakdown of user expenditures, categorizing them into various types such as groceries, utilities, and discretionary spending. This analysis is instrumental for personal budgeting, financial advising, and identifying potential savings areas. Insights derived from expense analysis can also support targeted marketing and personalized financial product offerings. All data sharing regarding expense analysis adheres to strict privacy standards, with MPC ensuring that information is disclosed only in accordance with specific consents.",
+                    description: "This category provides a detailed breakdown of user expenditures, categorizing them into various types, such as groceries, utilities, and discretionary spending. This analysis is instrumental for personal budgeting, financial advising, and identifying potential savings areas. Insights derived from expense analysis can also support targeted marketing and personalized financial product offerings. All data sharing regarding expense analysis adheres to strict privacy standards, with MPC ensuring that information is disclosed only in accordance with specific consents.",
                     dataPoints: [
                         {
                             id: "classification_users_monthly_expenses",
                             title: "Detailed classification of the user's monthly expenses",
-                            description: "Expense classification groups your transactions into categories like groceries, utilities, etc. This will be used exclusively for providing you spending insights. Our secure computation ensures we only categorize transactions without storing details - no analysis of lifestyle or preferences will be performed."
+                            description: "Expense classification groups your transactions into categories like groceries, utilities, etc."
                         }
                     ]
                 },
@@ -203,12 +203,12 @@
                         {
                             id: "foir",
                             title: "Financial Obligation Ratio (FOIR)",
-                            description: "FOIR shows what percentage of your income goes toward debt payments. This will be used solely for service eligibility assessment. Through privacy-preserving computation, we only calculate the ratio without accessing detailed income or debt information - no judgments about financial habits will be made."
+                            description: "FOIR shows what percentage of your income goes toward debt payments."
                         },
                         {
                             id: "betting_withdrawl_flags",
                             title: "Betting and Cash Withdrawal Flags",
-                            description: "These flags identify potentially high-risk transaction patterns. This will be used strictly for account security and fraud prevention. Our technology ensures we only detect patterns without analyzing individual transactions - no assumptions about personal activities will be made."
+                            description: "These flags identify potentially high-risk transaction patterns."
                         }
                     ]
                 }

@@ -227,106 +227,106 @@
             categories: [
                 {
                     id: "personal_info",
-                    title: "Basic Account Information",
+                    title: "Personally Identifiable Information",
                     description: "This section covers your essential banking identifiers - the basic information needed to identify you and your accounts securely. We need these details to comply with banking regulations and ensure secure transactions. We use advanced privacy technology to verify this information without actually storing or seeing the details themselves, keeping your personal data protected.",
                     dataPoints: [
                         {
                             id: "pan",
-                            title: "Your PAN Card Details",
-                            description: "Your PAN (Permanent Account Number) is a government-issued ID number for tax purposes. We'll only use it to verify your identity as required by law. We use privacy technology that lets us confirm it's valid without actually seeing or storing the number itself."
+                            title: "Permanent Account Number of the user",
+                            description: "Your PAN (Permanent Account Number) is a government-issued ID number for tax purposes."
                         },
                         {
                             id: "account_number",
-                            title: "Your Bank Account Number",
-                            description: "This is your unique bank account identifier. We'll only use it to ensure money goes to and from the right account. Our security system protects this number by keeping it hidden while still allowing necessary banking operations."
+                            title: "Bank account number of the user",
+                            description: "This is your unique bank account identifier."
                         },
                         {
                             id: "account_type",
-                            title: "Type of Bank Account",
-                            description: "Whether your account is savings, current, or fixed deposit. We need this to apply the right banking rules. We'll only check the type without making any assumptions about your banking choices."
+                            title: "Bank account type of the user",
+                            description: "Whether your account is savings, current, or fixed deposit."
                         }
                     ]
                 },
                 {
                     id: "balances",
-                    title: "Account Balance Information",
+                    title: "Account Balances",
                     description: "This section is about how much money you have in your accounts at different times. We use privacy technology to check your balances securely when needed, without keeping ongoing records of your money. This helps us ensure transactions are possible while protecting your financial privacy.",
                     dataPoints: [
                         {
                             id: "current_balance",
-                            title: "Current Available Balance",
-                            description: "Your present account balance. We'll only check this when needed for transactions, without storing the actual amounts or analyzing your spending capacity."
+                            title: "Amount value of the account as of the latest date",
+                            description: "Your present account balance."
                         },
                         {
                             id: "month_end_balance",
-                            title: "Month-End Balance",
-                            description: "Your balance at the end of each month. We only use this for required banking reports, without tracking your money patterns over time."
+                            title: "Balances as on the end of the month",
+                            description: "Your balance at the end of each month."
                         },
                         {
                             id: "daily_balance",
-                            title: "Daily Balance Updates",
-                            description: "Your end-of-day account balances. This helps us spot unusual activity to protect your account, without analyzing your daily spending habits."
+                            title: "End of day balances for every day of the month",
+                            description: "Your end-of-day account balances."
                         }
                     ]
                 },
                 {
                     id: "transaction",
-                    title: "Money Movement Summary",
+                    title: "Transaction Summary",
                     description: "This section shows the overall picture of money moving in and out of your accounts. We look at these patterns to keep your account safe and follow banking rules, while using privacy technology to avoid seeing the details of individual transactions.",
                     dataPoints: [
                         {
                             id: "total_amount_credit",
-                            title: "Money Received (Credits)",
-                            description: "Total money coming into your account. We only look at totals to verify eligibility for services, without analyzing where the money comes from."
+                            title: "Total amount credited to the user's account",
+                            description: "Total money coming into your account."
                         },
                         {
                             id: "total_amount_debited",
-                            title: "Money Spent (Debits)",
-                            description: "Total money going out of your account. We only check this to protect against fraud, without looking at your individual purchases or spending choices."
+                            title: "Total amount debited from the user's account",
+                            description: "Total money going out of your account."
                         },
                         {
                             id: "six_month",
-                            title: "6-Month Average Income",
-                            description: "Your typical monthly income based on the last six months. We only calculate the average for service eligibility, without analyzing your income sources."
+                            title: "The 6 month average salary of the user",
+                            description: "Your typical monthly income based on the last six months."
                         },
                         {
                             id: "monthly_cash_deposited",
-                            title: "Cash Deposits vs Total Money Received",
-                            description: "How much of your incoming money is cash deposits. This helps us follow banking rules about cash handling, without making assumptions about your cash usage."
+                            title: "The monthly cash deposit to total credit amount ratio",
+                            description: "How much of your incoming money is cash deposits."
                         },
                         {
                             id: "total_number_cheque_bounces",
-                            title: "Number of Bounced Checks",
-                            description: "How many checks couldn't be processed due to insufficient funds. We only count the number for account security, without making judgments about your financial choices."
+                            title: "Total number of outward cheque bounces",
+                            description: "How many checks couldn't be processed due to insufficient funds."
                         }
                     ]
                 },
                 {
                     id: "expense_analysis",
-                    title: "Spending Patterns",
+                    title: "Expense Analysis",
                     description: "This section organizes your spending into categories to help you understand your money habits. We use privacy technology to group your expenses without seeing the specific purchases, helping you track your budget while protecting your privacy.",
                     dataPoints: [
                         {
                             id: "classification_users_monthly_expenses",
-                            title: "Monthly Expense Categories",
-                            description: "Groups your spending into categories like groceries and utilities. We only sort transactions into groups without looking at specific purchases or analyzing your lifestyle."
+                            title: "Betting and Cash Withdrawal Flags",
+                            description: "Groups your spending into categories like groceries and utilities."
                         }
                     ]
                 },
                 {
                     id: "financial_ratios",
-                    title: "Financial Health Indicators",
+                    title: "Financial Ratios",
                     description: "These are measurements that help understand your overall financial wellbeing. We calculate these numbers using privacy technology that protects your personal information while helping assess eligibility for financial services.",
                     dataPoints: [
                         {
                             id: "foir",
-                            title: "Monthly Payment Capacity (FOIR)",
-                            description: "Shows how much of your income goes to regular payments. We only calculate this percentage for service eligibility, without looking at your specific income or payment details."
+                            title: "Financial Obligation Ratio (FOIR)",
+                            description: "Shows how much of your income goes to regular payments."
                         },
                         {
                             id: "betting_withdrawl_flags",
-                            title: "Unusual Transaction Alerts",
-                            description: "Helps identify potentially concerning transaction patterns. We only look for specific patterns to protect your account, without making assumptions about your activities."
+                            title: "Betting and Cash Withdrawal Flags",
+                            description: "Helps identify potentially concerning transaction patterns."
                         }
                     ]
                 }
