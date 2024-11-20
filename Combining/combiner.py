@@ -31,9 +31,6 @@ def combine_html(page1_path, page2_path, output_path):
 
 </body>
 </html>"""
-
-
-
     with open(output_path, "w") as f:
         f.write(suffix_of_combined)
 
