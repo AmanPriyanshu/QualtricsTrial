@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Implementation Notice - Silence Laboratories</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Typography improvements */
+        .prose {
+            max-width: 65ch;
+            line-height: 1.6;
+        }
+
+        .prose p {
+            margin-bottom: 1.5em;
+            color: #374151;
+        }
+
+        .prose ul {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .prose li {
+            margin-bottom: 0.5em;
+            color: #374151;
+        }
+
+        /* Smooth transitions */
+        .hover-transform {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hover-transform:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Custom list styling */
+        .custom-list {
+            list-style-type: none;
+            padding-left: 1.5em;
+        }
+
+        .custom-list li::before {
+            content: "• ";
+            color: #2563EB;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-3xl px-4 py-8">
+        <!-- Privacy Notice Card -->
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                Privacy Implementation Notice
+            </h1>
+            
+            <div class="prose">
+                <p>
+                    Silence Laboratories provides a privacy solution that enhances the security of your banking data and improves how your financial information is protected and shared. Our system creates a protected environment where your privacy choices are enforced through advanced security measures.
+                </p>
+            
+                <!-- How We Protect You Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    How We Protect You
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <ul class="custom-list space-y-2">
+                        <li>You're always in control of what information others can see</li>
+                        <li>Companies only get the specific insights you allow, never your actual banking data</li>
+                    </ul>
+                </div>
+            
+                <!-- Your Rights Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    Your Rights
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <ul class="custom-list space-y-2">
+                        <li>Select which parts of your financial data can be analyzed</li>
+                        <li>Choose exactly what others can learn from your data</li>
+                    </ul>
+                </div>
+            
+                <p class="text-gray-700 mt-8">
+                    By continuing, you'll activate our secure system that guarantees your data privacy choices will be followed exactly as you set them.
+                </p>
+            
+                <!-- Proceed Button -->
+                <div class="mt-8 flex justify-center">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg hover-transform focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Proceed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-12">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-600">
+            <p>&copy; 2024 Silence Laboratories. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
