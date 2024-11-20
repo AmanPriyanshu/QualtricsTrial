@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank Data Sharing Consent</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+    .container { width: 90%; max-width: 600px; margin: 20px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input[type="text"], input[type="password"], button, .features { width: 100%; padding: 10px; margin-top: 10px; }
+    button { background: #0056b3; color: white; border: none; cursor: pointer; }
+    button:hover { background: #003580; }
+    .hidden { display: none; }
+    label { display: block; margin: 15px 0 5px; }
+    #termsContainer { max-height: 150px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-top: 10px; }
+    #showMore { color: blue; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="container">
+    <div id="loginForm">
+        <h2>Login to Your Account</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username">
+        <label for="password">Password:</label>
+        <input type="password" id="password">
+        <button onclick="showBankSelection()">Login</button>
+    </div>
+    <div id="bankForm" class="hidden">
+        <h2>Select Your Banks</h2>
+        <p>Choose the banks you'd like to share data from:</p>
+        <label><input type="checkbox" class="bank" value="Bank A"> Bank A</label>
+        <label><input type="checkbox" class="bank" value="Bank B"> Bank B</label>
+        <label><input type="checkbox" class="bank" value="Bank C"> Bank C</label>
+        <button onclick="showFeatureSelection()">Next</button>
+    </div>
+    <div id="featureForm" class="hidden">
+        <h2>Data Sharing Options</h2>
+        <p>Select the types of data you're willing to share:</p>
+        <label><input type="checkbox" class="features" value="Transactions"> Transactions</label>
+        <label><input type="checkbox" class="features" value="Credit Score"> Credit Score</label>
+        <label><input type="checkbox" class="features" value="Account Balance"> Account Balance</label>
+        <label for="specification">Purpose Specification:</label>
+        <input type="text" id="specification" placeholder="E.g., Transactions over $10000">
+        <div id="termsContainer">
+            <h3>Terms and Conditions</h3>
+            <p>By using this service, you agree to share your selected financial data with our budgeting app. We will only use this data to provide you with personalized financial insights and recommendations.</p>
+            <p>Your data will be securely transmitted and stored. We do not sell your personal information to third parties.</p>
+            <span id="showMore">Show More...</span>
+            <div id="moreTerms" class="hidden">
+                <p>Additional terms and conditions would be displayed here, providing more detailed information about data usage, privacy policies, and user rights.</p>
+                <p>This section can be quite lengthy, allowing us to track if users actually scroll through and read the full terms.</p>
+            </div>
+        </div>
+        <label><input type="checkbox" id="agreeTerms"> I agree to the Terms and Conditions</label>
+        <button onclick="submitData()" id="submitButton" disabled>Submit</button>
+    </div>
+</div>
+<script>
+    let interactionLog = [];
+    let currentState = {
+        banks: [],
+        features: [],
+        specification: '',
+        termsExpanded: false,
+        termsScrollPercentage: 0,
+        agreedToTerms: false
+    };
+
+    function logInteraction(action, details = {}) {
+        const timestamp = new Date().toISOString();
+        const logEntry = { timestamp, action, ...details, currentState: { ...currentState } };
+        interactionLog.push(logEntry);
+        console.log('Interaction logged:', logEntry);
+    }
+
+    function updateState() {
+        currentState.banks = Array.from(document.querySelectorAll('.bank:checked')).map(bank => bank.value);
+        currentState.features = Array.from(document.querySelectorAll('.features:checked')).map(feature => feature.value);
+        currentState.specification = document.getElementById('specification').value;
+        currentState.agreedToTerms = document.getElementById('agreeTerms').checked;
+    }
+
+    function showBankSelection() {
+        logInteraction('Login Attempt', { username: document.getElementById('username').value });
+        document.getElementById('loginForm').classList.add('hidden');
+        document.getElementById('bankForm').classList.remove('hidden');
+    }
+
+    function showFeatureSelection() {
+        updateState();
+        logInteraction('Bank Selection Completed');
+        document.getElementById('bankForm').classList.add('hidden');
+        document.getElementById('featureForm').classList.remove('hidden');
+    }
+
+    function submitData() {
+        updateState();
+        logInteraction('Data Submission');
+        sendFinalLog();
+        alert('Thank you for your submission! The interaction log has been downloaded.');
+        resetForms();
+    }
+
+    function resetForms() {
+        document.getElementById('loginForm').classList.remove('hidden');
+        document.getElementById('bankForm').classList.add('hidden');
+        document.getElementById('featureForm').classList.add('hidden');
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+        document.getElementById('specification').value = '';
+        document.getElementById('agreeTerms').checked = false;
+        document.getElementById('submitButton').disabled = true;
+        document.getElementById('moreTerms').classList.add('hidden');
+        document.getElementById('showMore').textContent = 'Show More...';
+        currentState = {
+            banks: [],
+            features: [],
+            specification: '',
+            termsExpanded: false,
+            termsScrollPercentage: 0,
+            agreedToTerms: false
+        };
+        logInteraction('Forms Reset');
+    }
+
+    // Event listeners for detailed interaction tracking
+    document.querySelectorAll('.bank, .features').forEach(checkbox => {
+        checkbox.addEventListener('change', (e) => {
+            updateState();
+            logInteraction('Checkbox Change', { 
+                id: e.target.value, 
+                checked: e.target.checked, 
+                type: e.target.classList.contains('bank') ? 'bank' : 'feature' 
+            });
+        });
+    });
+
+    document.getElementById('specification').addEventListener('input', (e) => {
+        updateState();
+        logInteraction('Specification Input');
+    });
+
+    document.getElementById('showMore').addEventListener('click', () => {
+        const moreTerms = document.getElementById('moreTerms');
+        moreTerms.classList.toggle('hidden');
+        currentState.termsExpanded = !moreTerms.classList.contains('hidden');
+        document.getElementById('showMore').textContent = currentState.termsExpanded ? 'Show Less...' : 'Show More...';
+        logInteraction('Terms Expansion Toggle');
+    });
+
+    document.getElementById('termsContainer').addEventListener('scroll', (e) => {
+        const container = e.target;
+        currentState.termsScrollPercentage = Math.round((container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100);
+        logInteraction('Terms Scroll');
+    });
+
+    document.getElementById('agreeTerms').addEventListener('change', (e) => {
+        updateState();
+        document.getElementById('submitButton').disabled = !e.target.checked;
+        logInteraction('Terms Agreement Change');
+    });
+
+    // Log page load
+    window.addEventListener('load', () => logInteraction('Page Load'));
+
+    function sendFinalLog() {
+        const finalLog = {
+            interactionLog: interactionLog,
+            finalState: currentState
+        };
+        
+        // Create a Blob with the JSON data
+        const blob = new Blob([JSON.stringify(finalLog, null, 2)], {type: 'application/json'});
+        
+        // Create a link element and trigger the download
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'interaction_log.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        console.log('Final log downloaded:', finalLog);
+    }
+
+    // Log page unload and download final log
+    window.addEventListener('beforeunload', (event) => {
+        logInteraction('Page Unload');
+        sendFinalLog();
+        // Uncomment the following line if you want to show a confirmation dialog when leaving the page
+        // event.returnValue = '';
+    });
+</script>
+</body>
+</html>
