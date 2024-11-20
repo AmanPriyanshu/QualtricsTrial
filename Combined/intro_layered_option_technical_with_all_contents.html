@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Implementation Notice - Silence Laboratories</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Combined Custom CSS -->
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Typography improvements */
+        .prose {
+            max-width: 65ch;
+            line-height: 1.6;
+        }
+
+        .prose p {
+            margin-bottom: 1.5em;
+            color: #374151;
+        }
+
+        .prose ul {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .prose li {
+            margin-bottom: 0.5em;
+            color: #374151;
+        }
+
+        /* Smooth transitions */
+        .hover-transform {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hover-transform:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Custom list styling */
+        .custom-list {
+            list-style-type: none;
+            padding-left: 1.5em;
+        }
+
+        .custom-list li::before {
+            content: "• ";
+            color: #2563EB;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Layered Approach Styles */
+        .category-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 0.3rem;
+            margin-right: 1rem;
+            width: 18px;
+            height: 18px;
+        }
+
+        .data-point {
+            margin-left: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .data-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .data-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Highlight styles */
+        .highlight-primary {
+            background: linear-gradient(120deg, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        .highlight-security {
+            background: linear-gradient(120deg, rgba(52, 211, 153, 0.2) 0%, rgba(52, 211, 153, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        .highlight-tech {
+            background: linear-gradient(120deg, rgba(167, 139, 250, 0.2) 0%, rgba(167, 139, 250, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        .highlight-control {
+            background: linear-gradient(120deg, rgba(251, 146, 60, 0.2) 0%, rgba(251, 146, 60, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        /* Legend styling */
+        .highlight-legend {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        /* Container styles for the second page */
+        .data-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .data-container h1 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .button-container {
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        .next-button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .next-button:hover {
+            background: #357abd;
+        }
+
+        /* Third Page Styles */
+        .third-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        /* Hidden class */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Page 1: Privacy Implementation Notice with Layered Approach -->
+    <div id="page1" class="block">
+        <!-- Main Content -->
+        <main class="container mx-auto max-w-3xl px-4 py-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                    Privacy Implementation Notice
+                </h1>
+
+                <!-- Layer 1: Quick Summary -->
+                <div class="bg-white p-6 rounded-lg border-l-4 border-blue-600 mb-8">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-3">Key Points</h2>
+                    <ul class="custom-list space-y-2">
+                        <li>Advanced cryptographic system protecting your financial data</li>
+                        <li>Zero-trust privacy framework using MPC and TSS</li>
+                        <li>Mathematical guarantee of privacy preferences</li>
+                        <li>Third parties never access raw data</li>
+                    </ul>
+                    <p>
+                        When you connect your bank account, your raw financial data remains between you and your bank. We let you control exactly how others can analyze this data, which you'll choose in the next steps.
+                    </p>
+                </div>
+            
+                <!-- Layer 2: Core Technology -->
+                <div class="mb-8">
+                    <details class="bg-gray-50 rounded-lg" open>
+                        <summary class="cursor-pointer p-6 text-lg font-semibold text-gray-900">
+                            Our Technology Framework
+                        </summary>
+                        <div class="p-6 pt-0">
+                            <p>
+                                Silence Laboratories provides a privacy solution that enhances the security of your banking data and improves how your financial information is protected and shared. Our system creates a protected environment where your privacy choices are enforced through advanced security measures.
+                            </p>
+                            <p>
+                                When you link your bank accounts through our platform, we create a secure system that automatically enforces your privacy choices. Unlike traditional systems that rely on simple permission settings we ensure that anyone trying to access your data has to follow your exact privacy preferences - it's not just a policy, it's built into the system itself.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            
+                <!-- Layer 3: Technical Implementation -->
+                <div class="mb-8">
+                    <details class="bg-gray-50 rounded-lg" open>
+                        <summary class="cursor-pointer p-6 text-lg font-semibold text-gray-900">
+                            Technical Implementation Details
+                        </summary>
+                        <div class="p-6 pt-0">
+                            <p>
+                                The core of our technology leverages Multi-Party Computation (MPC) to enable third parties to compute authorized inferences without ever accessing the underlying raw financial data. Through our proprietary implementation of secure multiparty computation protocols, we create cryptographic circuits that precisely match your consent specifications. These circuits ensure that only the explicitly authorized computations can be performed on your data, making it mathematically impossible for third parties to exceed their authorized access scope.
+                            </p>
+                            <p>
+                                Each inference request triggers a distributed computation protocol where the raw data remains encrypted and fragmented. Our TSS implementation ensures that signing keys for data access are never reconstructed in a single location, while our MPC protocol enforces that only pre-approved computational circuits can be executed.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            
+                <!-- Layer 4: Practical Implementation -->
+                <div class="mb-8">
+                    <details class="bg-gray-50 rounded-lg" open>
+                        <summary class="cursor-pointer p-6 text-lg font-semibold text-gray-900">
+                            Privacy Enforcement Mechanism
+                        </summary>
+                        <div class="p-6 pt-0">
+                            <p>
+                                This creates a cryptographically enforced privacy boundary where third parties receive only the specific insights you've authorized, with mathematical guarantees that neither the raw data nor unauthorized inferences can be extracted.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            
+                <!-- How We Protect You Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    How We Protect You
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <ul class="custom-list space-y-2">
+                        <li>You maintain complete control over what information third parties can access</li>
+                        <li>Third parties only receive specific insights you've authorized, never your raw financial data</li>
+                        <li>Our proprietary technology mathematically enforces these privacy controls, making unauthorized access impossible</li>
+                    </ul>
+                </div>
+            
+                <!-- Your Rights Section -->
+                <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                    Your Rights
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                    <ul class="custom-list space-y-2">
+                        <li>Choose exactly what data can be analyzed</li>
+                        <li>Specify precisely what insights third parties can receive</li>
+                        <li>Revoke access at any time</li>
+                    </ul>
+                </div>
+            
+                <p class="text-gray-700 mt-8">
+                    By proceeding, you're enabling a cryptographically secured privacy
+                    framework that provides mathematical guarantees for your data privacy
+                    preferences.
+                </p>
+
+                <!-- Proceed Button -->
+                <div class="mt-8 flex justify-center">
+                    <button id="proceed-button" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg hover-transform focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Proceed
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-100 mt-12">
+            <div class="container mx-auto px-4 py-6 text-center text-gray-600">
+                <p>&copy; 2024 Silence Laboratories. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Page 2: Data Sharing Preferences -->
+    <div id="page2" class="hidden">
+        <div class="data-container" id="data-container">
+            <h1>Data Sharing Preferences</h1>
+            <!-- Content will be dynamically inserted here -->
+            <div id="dynamic-content"></div>
+            <!-- Next Button -->
+            <div class="button-container">
+                <button id="next-button" class="next-button">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Return to Survey -->
+    <div id="page3" class="hidden third-page">
+        RETURN TO THE SURVEY
+    </div>
+
+    <!-- Interaction Logging Scripts -->
+    <script>
+        // Initialize interaction log
+        let interactionLog = [];
+        let currentState = {
+            page: 'page1',
+            banks: [],
+            features: [],
+            specification: '',
+            termsExpanded: false,
+            termsScrollPercentage: 0,
+            agreedToTerms: false
+        };
+
+        // Function to log interactions
+        function logInteraction(action, details = {}) {
+            const timestamp = new Date().toISOString();
+            const logEntry = { timestamp, action, ...details, currentState: { ...currentState } };
+            interactionLog.push(logEntry);
+            console.log('Interaction logged:', logEntry);
+        }
+
+        // Function to update current state
+        function updateState() {
+            currentState.banks = Array.from(document.querySelectorAll('.bank:checked')).map(bank => bank.value);
+            currentState.features = Array.from(document.querySelectorAll('.feature-checkbox:checked')).map(feature => feature.id);
+            const specificationInput = document.getElementById('specification');
+            currentState.specification = specificationInput ? specificationInput.value : currentState.specification;
+            const agreeTermsCheckbox = document.getElementById('agreeTerms');
+            currentState.agreedToTerms = agreeTermsCheckbox ? agreeTermsCheckbox.checked : currentState.agreedToTerms;
+        }
+
+        // Function to generate Data Sharing Preferences content
+        const pageContent = {
+            categories: [
+                {
+                    id: "personal_info",
+                    title: "Account Aggregation (Personal Information)",
+                    description: "This category encompasses the foundational data elements that uniquely identify a user within financial systems, such as the Permanent Account Number (PAN), bank account numbers, and types of bank accounts. These identifiers are not just verified but are also safeguarded to ensure data integrity and compliance. They are required by regulatory bodies to ensure compliance with anti-money laundering (AML) and know-your-customer (KYC) regulations. ",
+                    dataPoints: [
+                        {
+                            id: "pan",
+                            title: "Permanent Account Number of the user",
+                            description: "A Permanent Account Number (PAN) is a unique 10-digit identifier issued by the Indian government for tax purposes."
+                        },
+                        {
+                            id: "account_number",
+                            title: "Bank account number of the user",
+                            description: "A bank account number is your unique identifier at your bank, used to distinguish your account from others."
+                        },
+                        {
+                            id: "account_type",
+                            title: "Bank account type of the user",
+                            description: "Account type indicates whether your account is savings, current, or fixed deposit, each with different features and rules."
+                        }
+                    ]
+                },
+                {
+                    id: "balances",
+                    title: "Account Balances",
+                    description: "This category records the fluctuating states of a user's financial assets in their bank accounts, tracking balances across different points in time. Such data is fundamental for personal finance management, loan eligibility assessments, and financial planning. Accurately monitoring these balances enables users and financial institutions to gauge financial health and liquidity. Each balance-related function under this category uses Secure Computation to uphold the principle of minimum disclosure, ensuring that only the requisite inference for a specific purpose is shared while maximizing user privacy.",
+                    dataPoints: [
+                        {
+                            id: "current_balance",
+                            title: "Amount value of the account as of the latest date",
+                            description: "Your current account balance shows how much money you currently have available."
+                        },
+                        {
+                            id: "month_end_balance",
+                            title: "Balances as on the end of the month",
+                            description: "End-of-month balance is your account balance on the last day of each month."
+                        },
+                        {
+                            id: "daily_balance",
+                            title: "End of day balances for every day of the month",
+                            description: "Daily balance shows your account balance at the end of each day."
+                        }
+                    ]
+                },
+                {
+                    id: "transaction",
+                    title: "Transaction Summary",
+                    description: "This category aggregates transactional data across a user's accounts, summarizing credit and debit activities. This overview aids users in tracking their financial operations over time, helping detect patterns and potential discrepancies. It also serves as a foundation for automated financial advice and anomaly detection systems in banking. By integrating MPC, we provide assurance that transaction summaries are shared exclusively under the terms agreed to by the user, enhancing data privacy and security.",
+                    dataPoints: [
+                        {
+                            id: "total_amount_credit",
+                            title: "Total amount credited to the user's account",
+                            description: "Credits are all incoming money transfers to your account."
+                        },
+                        {
+                            id: "total_amount_debited",
+                            title: "Total amount debited from the user's account",
+                            description: "Debits are all outgoing payments or withdrawals from your account."
+                        },
+                        {
+                            id: "six_month",
+                            title: "The 6 month average salary of the user",
+                            description: "Average salary calculates your typical monthly income over six months"
+                        },
+                        {
+                            id: "monthly_cash_deposited",
+                            title: "The monthly cash deposit to total credit amount ratio",
+                            description: "This ratio compares your cash deposits to total incoming money."
+                        },
+                        {
+                            id: "total_number_cheque_bounces",
+                            title: "Total number of outward cheque bounces",
+                            description: "Cheque bounces occur when there are insufficient funds to honor a cheque payment."
+                        }
+                    ]
+                },
+                {
+                    id: "expense_analysis",
+                    title: "Expense Analysis",
+                    description: "This category provides a detailed breakdown of user expenditures, categorizing them into various types, such as groceries, utilities, and discretionary spending. This analysis is instrumental for personal budgeting, financial advising, and identifying potential savings areas. Insights derived from expense analysis can also support targeted marketing and personalized financial product offerings. All data sharing regarding expense analysis adheres to strict privacy standards, with MPC ensuring that information is disclosed only in accordance with specific consents.",
+                    dataPoints: [
+                        {
+                            id: "classification_users_monthly_expenses",
+                            title: "Detailed classification of the user's monthly expenses",
+                            description: "Expense classification groups your transactions into categories like groceries, utilities, etc."
+                        }
+                    ]
+                },
+                {
+                    id: "financial_ratios",
+                    title: "Financial Ratios",
+                    description: "Financial ratios are critical metrics that provide insights into a user's financial health, leveraging data on income, debts, expenses, and more. These ratios are used by financial institutions for assessing creditworthiness, investment potential, and overall financial stability. Common ratios include debt-to-income and savings rate, each offering distinct insights that can guide financial decision-making. Our implementation of MPC ensures that these sensitive financial ratios are shared only according to the specific purposes authorized by the user, maintaining privacy and data integrity.",
+                    dataPoints: [
+                        {
+                            id: "foir",
+                            title: "Financial Obligation Ratio (FOIR)",
+                            description: "FOIR shows what percentage of your income goes toward debt payments."
+                        },
+                        {
+                            id: "betting_withdrawl_flags",
+                            title: "Betting and Cash Withdrawal Flags",
+                            description: "These flags identify potentially high-risk transaction patterns."
+                        }
+                    ]
+                }
+            ]
+        };
+        
+        function generateOptionsPage(content) {
+            const container = document.getElementById('dynamic-content');
+            
+            content.categories.forEach(category => {
+                const categorySection = document.createElement('div');
+                categorySection.className = 'category-section';
+                categorySection.innerHTML = `
+                    <div class="category-header">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="${category.id}" class="category-checkbox">
+                            <label for="${category.id}">
+                                <div class="data-title">${category.title}</div>
+                                <div class="data-description">${category.description}</div>
+                            </label>
+                        </div>
+                    </div>
+                    ${category.dataPoints.map(point => `
+                        <div class="data-point">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="${point.id}" class="feature-checkbox">
+                                <div>
+                                    <label for="${point.id}" class="data-title">${point.title}</label>
+                                    <div class="data-description">${point.description}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                `;
+                container.appendChild(categorySection);
+            });
+
+            // Set up checkbox behavior
+            setupCheckboxes();
+        }
+
+        // Function to handle checkbox behavior
+        function setupCheckboxes() {
+            const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
+            categoryCheckboxes.forEach(checkbox => {
+                const section = checkbox.closest('.category-section');
+                const subCheckboxes = section.querySelectorAll('.feature-checkbox');
+                
+                checkbox.addEventListener('change', () => {
+                    subCheckboxes.forEach(subCheckbox => {
+                        subCheckbox.checked = checkbox.checked;
+                        logInteraction('Checkbox Change', { 
+                            id: subCheckbox.id, 
+                            checked: subCheckbox.checked, 
+                            type: 'feature-checkbox',
+                            category: checkbox.id
+                        });
+                    });
+                    logInteraction('Category Checkbox Change', { 
+                        id: checkbox.id, 
+                        checked: checkbox.checked, 
+                        type: 'category-checkbox' 
+                    });
+                });
+
+                subCheckboxes.forEach(subCheckbox => {
+                    subCheckbox.addEventListener('change', () => {
+                        const allChecked = Array.from(subCheckboxes).every(cb => cb.checked);
+                        const anyChecked = Array.from(subCheckboxes).some(cb => cb.checked);
+                        checkbox.checked = allChecked;
+                        checkbox.indeterminate = anyChecked && !allChecked;
+                        logInteraction('Checkbox Change', { 
+                            id: subCheckbox.id, 
+                            checked: subCheckbox.checked, 
+                            type: 'feature-checkbox',
+                            category: checkbox.id
+                        });
+                    });
+                });
+            });
+        }
+
+        // Function to trigger log download
+        function downloadLog() {
+            const finalLog = {
+                interactionLog: interactionLog,
+                finalState: currentState
+            };
+            
+            // Create a Blob with the JSON data
+            const blob = new Blob([JSON.stringify(finalLog, null, 2)], {type: 'application/json'});
+            
+            // Create a link element and trigger the download
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'interaction_log.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            console.log('Final log downloaded:', finalLog);
+        }
+
+        // Handle navigation between pages and logging
+        document.getElementById('proceed-button').addEventListener('click', () => {
+            logInteraction('Proceed Button Clicked');
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.remove('hidden');
+            currentState.page = 'page2';
+        });
+
+        document.getElementById('next-button').addEventListener('click', () => {
+            logInteraction('Next Button Clicked');
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('page3').classList.remove('hidden');
+            currentState.page = 'page3';
+            downloadLog();
+        });
+
+        // Initialize the Data Sharing Preferences page
+        document.addEventListener('DOMContentLoaded', () => {
+            generateOptionsPage(pageContent);
+            logInteraction('Page Load', { page: 'page1' });
+        });
+
+        // Event listeners for checkbox changes in page2
+        document.addEventListener('change', (event) => {
+            if (event.target.matches('.category-checkbox')) {
+                // Handled in setupCheckboxes
+            } else if (event.target.matches('.feature-checkbox')) {
+                // Handled in setupCheckboxes
+            }
+        });
+
+        // Log page unload
+        window.addEventListener('beforeunload', () => {
+            logInteraction('Page Unload', { page: currentState.page });
+            // Optionally, you can trigger log download here as a fallback
+            // downloadLog();
+        });
+    </script>
+</body>
+</html>
