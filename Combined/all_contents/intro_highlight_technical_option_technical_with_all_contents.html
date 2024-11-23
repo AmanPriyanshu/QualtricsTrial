@@ -561,24 +561,100 @@
         }
 
         // Function to trigger log download
-        function downloadLog() {
-            const finalLog = {
-                interactionLog: interactionLog,
-                finalState: currentState
-            };
+        // function downloadLog() {
+        //     const finalLog = {
+        //         interactionLog: interactionLog,
+        //         finalState: currentState
+        //     };
             
-            // Create a Blob with the JSON data
-            const blob = new Blob([JSON.stringify(finalLog, null, 2)], {type: 'application/json'});
+        //     // Create a Blob with the JSON data
+        //     const blob = new Blob([JSON.stringify(finalLog, null, 2)], {type: 'application/json'});
             
-            // Create a link element and trigger the download
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'interaction_log.json';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+        //     // Create a link element and trigger the download
+        //     const a = document.createElement('a');
+        //     a.href = URL.createObjectURL(blob);
+        //     a.download = 'interaction_log.json';
+        //     document.body.appendChild(a);
+        //     a.click();
+        //     document.body.removeChild(a);
 
-            console.log('Final log downloaded:', finalLog);
+        //     console.log('Final log downloaded:', finalLog);
+        // }
+        const URLParamsHandler = {
+            // Get all URL parameters as an object
+            getAllParams() {
+                const params = {};
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                
+                for (const [key, value] of urlParams.entries()) {
+                params[key] = value;
+                }
+                
+                return params;
+            },
+
+            // Get a specific parameter by name
+            getParam(paramName) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(paramName);
+            },
+
+            // Check if a parameter exists
+            hasParam(paramName) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.has(paramName);
+            },
+
+            // Get parameters and apply them to elements with matching data-param attributes
+            applyParamsToElements() {
+                const params = this.getAllParams();
+                
+                for (const [key, value] of Object.entries(params)) {
+                const elements = document.querySelectorAll(`[data-param="${key}"]`);
+                elements.forEach(element => {
+                    // Handle different element types
+                    if (element.tagName === 'INPUT') {
+                    element.value = value;
+                    } else {
+                    element.textContent = value;
+                    }
+                });
+                }
+            }
+        };
+        
+        function downloadLog() {
+            const allParams = URLParamsHandler.getAllParams();
+            console.log('All parameters:', allParams);
+            const name = URLParamsHandler.getParam('prolificid');
+            if (name) {
+                console.log('prolificid parameter:', name);
+            }
+            const stringifiedData = JSON.stringify({
+                data: {
+                    interactionLog: interactionLog,
+                    finalState: currentState,
+                    prolificid: name,
+                }
+            });
+            const finalLog = JSON.parse(stringifiedData);
+            
+            fetch('https://survey.suriya.cc/append/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: stringifiedData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Failed to send log data');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending log data:', error);
+            });
         }
 
         // Handle navigation between pages and logging
