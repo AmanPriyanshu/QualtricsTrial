@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Implementation Notice - Silence Laboratories</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Combined Custom CSS -->
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Typography improvements */
+        .prose {
+            max-width: 65ch;
+            line-height: 1.6;
+        }
+
+        .prose p {
+            margin-bottom: 1.5em;
+            color: #374151;
+        }
+
+        .prose ul {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .prose li {
+            margin-bottom: 0.5em;
+            color: #374151;
+        }
+
+        /* Highlight styles */
+        .highlight-primary {
+            background: linear-gradient(120deg, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        .highlight-security {
+            background: linear-gradient(120deg, rgba(52, 211, 153, 0.2) 0%, rgba(52, 211, 153, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        .highlight-tech {
+            background: linear-gradient(120deg, rgba(167, 139, 250, 0.2) 0%, rgba(167, 139, 250, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        .highlight-control {
+            background: linear-gradient(120deg, rgba(251, 146, 60, 0.2) 0%, rgba(251, 146, 60, 0.2) 100%);
+            padding: 0.2em 0.1em;
+            border-radius: 0.2em;
+        }
+
+        /* Smooth transitions */
+        .hover-transform {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hover-transform:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Custom list styling */
+        .custom-list {
+            list-style-type: none;
+            padding-left: 1.5em;
+        }
+
+        .custom-list li::before {
+            content: "• ";
+            color: #2563EB;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Legend styling */
+        .highlight-legend {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        /* Reset and base styles for second page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Container styles for the second page */
+        .data-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .data-container h1 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .category-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+        }
+
+        .category-section.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .category-main {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 0.3rem;
+            width: 18px;
+            height: 18px;
+        }
+
+        .data-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .navigation-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-button {
+            background: #fff;
+            border: 1px solid #4a90e2;
+            color: #4a90e2;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #f5f9ff;
+        }
+
+        .nav-button.next {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .nav-button.next:hover {
+            background: #357abd;
+        }
+
+        .nav-button.finish {
+            background: #27ae60;
+            border-color: #27ae60;
+            color: white;
+        }
+
+        .nav-button.finish:hover {
+            background: #219a52;
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            border-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .page-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-dot.active {
+            background: #4a90e2;
+            transform: scale(1.2);
+        }
+
+        /* Third Page Styles */
+        .third-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        /* Hidden class */
+        .hidden {
+            display: none;
+        }
+
+        /* Progress bar styles */
+        .progress-container {
+            background: #eee;
+            height: 4px;
+            width: 200px;
+            border-radius: 2px;
+            margin-left: 1rem;
+        }
+
+        .progress-bar {
+            background: #4a90e2;
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            text-align: right;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Page 1: Privacy Implementation Notice -->
+    <div id="page1" class="block">
+        <!-- Main Content -->
+        <main class="container mx-auto max-w-3xl px-4 py-8">
+            <!-- Privacy Notice Card -->
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                    Privacy Implementation Notice
+                </h1>
+
+                <!-- Legend -->
+                <div class="highlight-legend">
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: rgba(96, 165, 250, 0.2)"></div>
+                        <span>Key Concepts</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: rgba(52, 211, 153, 0.2)"></div>
+                        <span>Security Features</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: rgba(167, 139, 250, 0.2)"></div>
+                        <span>Technical Terms</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: rgba(251, 146, 60, 0.2)"></div>
+                        <span>User Control</span>
+                    </div>
+                </div>
+
+                <div class="prose">
+                    <p>
+                        Silence Laboratories implements a <span class="highlight-security">cryptographically secure privacy layer</span> within open banking systems, fundamentally transforming how <span class="highlight-primary">financial data access is governed and enforced</span>. Our system integrates with account aggregators to establish a <span class="highlight-security">zero-trust privacy framework</span> through <span class="highlight-tech">advanced Multi-Party Computation (MPC)</span> and <span class="highlight-tech">Threshold Signature Schemes (TSS)</span>.
+                    </p>
+    
+                    <p>
+                        When you connect your financial accounts through our platform, we deploy a <span class="highlight-tech">distributed cryptographic protocol</span> that <span class="highlight-primary">mathematically binds your privacy preferences</span> to the data processing pipeline. Unlike traditional systems that rely on policy-based access controls, our implementation uses <span class="highlight-tech">threshold cryptography</span> to <span class="highlight-security">split your encrypted data across multiple parties</span>.
+                    </p>
+    
+                    <p>
+                        Our technology uses <span class="highlight-tech">MPC protocols</span> to enable <span class="highlight-security">secure computations on encrypted data</span>, ensuring third parties can only perform <span class="highlight-primary">explicitly authorized calculations</span> without accessing your raw financial data. Through our <span class="highlight-security">distributed security system</span>, we create a <span class="highlight-security">cryptographic boundary</span> where third parties receive only the <span class="highlight-primary">specific insights you've authorized</span>, with <span class="highlight-security">mathematical guarantees against unauthorized access or inference</span>.
+                    </p>
+    
+                    <!-- How We Protect You Section -->
+                    <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                        How We Protect You
+                    </h2>
+                    <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                        <ul class="custom-list space-y-2">
+                            <li>You maintain <span class="highlight-control">complete control</span> over what information third parties can access</li>
+                            <li>Third parties only receive <span class="highlight-primary">specific insights you've authorized</span>, never your raw financial data</li>
+                            <li>Our technology <span class="highlight-security">mathematically enforces</span> these privacy controls, making unauthorized access impossible</li>
+                        </ul>
+                    </div>
+    
+                    <!-- Your Rights Section -->
+                    <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">
+                        Your Rights
+                    </h2>
+                    <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                        <ul class="custom-list space-y-2">
+                            <li><span class="highlight-control">Choose exactly</span> what data and how it can be analyzed</li>
+                            <li><span class="highlight-control">Specify precisely</span> what insights third parties can receive</li>
+                            <li><span class="highlight-control">Revoke access</span> at any time</li>
+                            <li>Receive transparent information about how your data is used</li>
+                        </ul>
+                    </div>
+    
+                    <p class="text-gray-700 mt-8">
+                        By proceeding, you're enabling a <span class="highlight-security">cryptographic privacy framework</span> that <span class="highlight-primary">mathematically guarantees</span> your data privacy preferences.
+                    </p>
+                </div>
+                
+                    <!-- Proceed Button -->
+                    <div class="mt-8 flex justify-center">
+                        <button id="proceed-button" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg hover-transform focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            Proceed
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <!-- Footer -->
+        <footer class="bg-gray-100 mt-12">
+            <div class="container mx-auto px-4 py-6 text-center text-gray-600">
+                <p>&copy; 2024 Silence Laboratories. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Page 2: Data Sharing Preferences (Multi-Page) -->
+    <div id="page2" class="hidden">
+        <div class="container">
+            <div class="page-header">
+                <h1>Data Sharing Preferences</h1>
+                <div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <div class="progress-text" id="progress-text">Step 1 of 5</div>
+                </div>
+            </div>
+            
+            <div id="content-container"></div>
+
+            <div class="page-indicator" id="page-indicator"></div>
+
+            <div class="navigation-container">
+                <button class="nav-button" id="prev-button" onclick="previousPage()" disabled>Previous</button>
+                <button class="nav-button next" id="next-button" onclick="nextPage()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Return to Survey -->
+    <div id="page3" class="hidden third-page">
+        RETURN TO THE SURVEY
+    </div>
+
+    <!-- Interaction Logging Scripts -->
+    <script>
+        // Initialize interaction log
+        let interactionLog = [];
+        let currentState = {
+            page: 'page1',
+            currentPageIndex: 0, // For multi-page page2
+            banks: [],
+            features: [],
+            specification: '',
+            agreedToTerms: false
+        };
+
+        // Function to log interactions
+        function logInteraction(action, details = {}) {
+            const timestamp = new Date().toISOString();
+            const logEntry = { timestamp, action, ...details, currentState: { ...currentState } };
+            interactionLog.push(logEntry);
+            console.log('Interaction logged:', logEntry);
+        }
+
+        // Function to trigger log download
+        // function downloadLog() {
+        //     const finalLog = {
+        //         interactionLog: interactionLog,
+        //         finalState: currentState
+        //     };
+            
+        //     // Create a Blob with the JSON data
+        //     const blob = new Blob([JSON.stringify(finalLog, null, 2)], {type: 'application/json'});
+            
+        //     // Create a link element and trigger the download
+        //     const a = document.createElement('a');
+        //     a.href = URL.createObjectURL(blob);
+        //     a.download = 'interaction_log.json';
+        //     document.body.appendChild(a);
+        //     a.click();
+        //     document.body.removeChild(a);
+
+        //     console.log('Final log downloaded:', finalLog);
+        // }
+        const URLParamsHandler = {
+            // Get all URL parameters as an object
+            getAllParams() {
+                const params = {};
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                
+                for (const [key, value] of urlParams.entries()) {
+                params[key] = value;
+                }
+                
+                return params;
+            },
+
+            // Get a specific parameter by name
+            getParam(paramName) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(paramName);
+            },
+
+            // Check if a parameter exists
+            hasParam(paramName) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.has(paramName);
+            },
+
+            // Get parameters and apply them to elements with matching data-param attributes
+            applyParamsToElements() {
+                const params = this.getAllParams();
+                
+                for (const [key, value] of Object.entries(params)) {
+                const elements = document.querySelectorAll(`[data-param="${key}"]`);
+                elements.forEach(element => {
+                    // Handle different element types
+                    if (element.tagName === 'INPUT') {
+                    element.value = value;
+                    } else {
+                    element.textContent = value;
+                    }
+                });
+                }
+            }
+        };
+        
+        function downloadLog() {
+            const allParams = URLParamsHandler.getAllParams();
+            console.log('All parameters:', allParams);
+            const name = URLParamsHandler.getParam('prolificid');
+            if (name) {
+                console.log('prolificid parameter:', name);
+            }
+            const stringifiedData = JSON.stringify({
+                data: {
+                    interactionLog: interactionLog,
+                    finalState: currentState,
+                    prolificid: name,
+                }
+            });
+            const finalLog = JSON.parse(stringifiedData);
+            
+            fetch('https://survey.suriya.cc/append/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: stringifiedData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Failed to send log data');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending log data:', error);
+            });
+        }
+
+        // Function to generate Data Sharing Preferences content
+        const pageContent = {
+            categories: [
+                {
+                    id: "personal_info",
+                    title: "Personally Identifiable Information",
+                    description: "This section covers your essential banking identifiers - the basic information needed to identify you and your accounts securely. We need these details to comply with banking regulations and ensure secure transactions. We use advanced privacy technology to verify this information without actually storing or seeing the details themselves, keeping your personal data protected.",
+                    dataPoints: [
+                        {
+                            id: "pan",
+                            title: "Permanent Account Number of the user",
+                            description: "Your PAN (Permanent Account Number) is a government-issued ID number for tax purposes."
+                        },
+                        {
+                            id: "account_number",
+                            title: "Bank account number of the user",
+                            description: "This is your unique bank account identifier."
+                        },
+                        {
+                            id: "account_type",
+                            title: "Bank account type of the user",
+                            description: "Whether your account is savings, current, or fixed deposit."
+                        }
+                    ]
+                },
+                {
+                    id: "balances",
+                    title: "Account Balances",
+                    description: "This section is about how much money you have in your accounts at different times. We use privacy technology to check your balances securely when needed, without keeping ongoing records of your money. This helps us ensure transactions are possible while protecting your financial privacy.",
+                    dataPoints: [
+                        {
+                            id: "current_balance",
+                            title: "Amount value of the account as of the latest date",
+                            description: "Your present account balance."
+                        },
+                        {
+                            id: "month_end_balance",
+                            title: "Balances as on the end of the month",
+                            description: "Your balance at the end of each month."
+                        },
+                        {
+                            id: "daily_balance",
+                            title: "End of day balances for every day of the month",
+                            description: "Your end-of-day account balances."
+                        }
+                    ]
+                },
+                {
+                    id: "transaction",
+                    title: "Transaction Summary",
+                    description: "This section shows the overall picture of money moving in and out of your accounts. We look at these patterns to keep your account safe and follow banking rules, while using privacy technology to avoid seeing the details of individual transactions.",
+                    dataPoints: [
+                        {
+                            id: "total_amount_credit",
+                            title: "Total amount credited to the user's account",
+                            description: "Total money coming into your account."
+                        },
+                        {
+                            id: "total_amount_debited",
+                            title: "Total amount debited from the user's account",
+                            description: "Total money going out of your account."
+                        },
+                        {
+                            id: "six_month",
+                            title: "The 6 month average salary of the user",
+                            description: "Your typical monthly income based on the last six months."
+                        },
+                        {
+                            id: "monthly_cash_deposited",
+                            title: "The monthly cash deposit to total credit amount ratio",
+                            description: "How much of your incoming money is cash deposits."
+                        },
+                        {
+                            id: "total_number_cheque_bounces",
+                            title: "Total number of outward cheque bounces",
+                            description: "How many checks couldn't be processed due to insufficient funds."
+                        }
+                    ]
+                },
+                {
+                    id: "expense_analysis",
+                    title: "Expense Analysis",
+                    description: "This section organizes your spending into categories to help you understand your money habits. We use privacy technology to group your expenses without seeing the specific purchases, helping you track your budget while protecting your privacy.",
+                    dataPoints: [
+                        {
+                            id: "classification_users_monthly_expenses",
+                            title: "Betting and Cash Withdrawal Flags",
+                            description: "Groups your spending into categories like groceries and utilities."
+                        }
+                    ]
+                },
+                {
+                    id: "financial_ratios",
+                    title: "Financial Ratios",
+                    description: "These are measurements that help understand your overall financial wellbeing. We calculate these numbers using privacy technology that protects your personal information while helping assess eligibility for financial services.",
+                    dataPoints: [
+                        {
+                            id: "foir",
+                            title: "Financial Obligation Ratio (FOIR)",
+                            description: "Shows how much of your income goes to regular payments."
+                        },
+                        {
+                            id: "betting_withdrawl_flags",
+                            title: "Betting and Cash Withdrawal Flags",
+                            description: "Helps identify potentially concerning transaction patterns."
+                        }
+                    ]
+                }
+            ]
+        };
+        
+        let currentPageIndex = 0;
+        const totalPages = pageContent.categories.length;
+        const contentContainer = document.getElementById('content-container');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const pageIndicator = document.getElementById('page-indicator');
+
+        // Function to create category section
+        function createCategorySection(category) {
+            const section = document.createElement('div');
+            section.className = 'category-section';
+            
+            section.innerHTML = `
+                <div class="category-main">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="${category.id}" class="category-checkbox">
+                        <div>
+                            <label for="${category.id}" class="data-title">${category.title}</label>
+                            <div class="data-description">${category.description}</div>
+                        </div>
+                    </div>
+                </div>
+                ${category.dataPoints.map(point => `
+                    <div class="data-point">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="${point.id}" class="feature-checkbox">
+                            <div>
+                                <label for="${point.id}" class="data-title">${point.title}</label>
+                                <div class="data-description">${point.description}</div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+            
+            return section;
+        }
+
+        // Function to update progress bar and text
+        function updateProgress() {
+            const progress = ((currentPageIndex + 1) / totalPages) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `Step ${currentPageIndex + 1} of ${totalPages}`;
+            
+            // Update navigation buttons
+            prevButton.disabled = currentPageIndex === 0;
+            if (currentPageIndex === totalPages - 1) {
+                nextButton.textContent = 'Finish';
+                nextButton.classList.add('finish');
+            } else {
+                nextButton.textContent = 'Next';
+                nextButton.classList.remove('finish');
+            }
+
+            // Update page indicators
+            const dots = Array.from(pageIndicator.children);
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentPageIndex);
+            });
+        }
+
+        // Function to show a specific page
+        function showPage(pageIndex) {
+            contentContainer.innerHTML = '';
+            const section = createCategorySection(pageContent.categories[pageIndex]);
+            contentContainer.appendChild(section);
+            
+            // Trigger animation
+            setTimeout(() => {
+                section.classList.add('visible');
+            }, 50);
+
+            setupCheckboxes(section);
+            updateProgress();
+            logInteraction('Page Displayed', { pageIndex });
+        }
+
+        // Function to handle Next button
+        function nextPage() {
+            // Prevent double-triggering by checking if transition is already happening
+            if (this.transitioning) return;
+            this.transitioning = true;
+            
+            if (currentPageIndex < totalPages - 1) {
+                currentPageIndex++;
+                showPage(currentPageIndex);
+                logInteraction('Next Page', { currentPageIndex });
+            } else {
+                // Handle form submission
+                logInteraction('Finish Button Clicked');
+                document.getElementById('page2').classList.add('hidden');
+                document.getElementById('page3').classList.remove('hidden');
+                currentState.page = 'page3';
+                downloadLog();
+            }
+            
+            // Reset the transitioning flag after a short delay
+            setTimeout(() => {
+                this.transitioning = false;
+            }, 100);
+        }
+
+
+        // Function to handle Previous button
+        function previousPage() {
+            // Prevent double-triggering by checking if transition is already happening
+            if (this.transitioning) return;
+            this.transitioning = true;
+            
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                showPage(currentPageIndex);
+                logInteraction('Previous Page', { currentPageIndex });
+            }
+            
+            // Reset the transitioning flag after a short delay
+            setTimeout(() => {
+                this.transitioning = false;
+            }, 100);
+        }
+
+        // Function to setup checkbox behavior
+        function setupCheckboxes(section) {
+            const mainCheckbox = section.querySelector('.category-checkbox');
+            const subCheckboxes = section.querySelectorAll('.feature-checkbox');
+            
+            // Event listener for main checkbox
+            mainCheckbox.addEventListener('change', () => {
+                subCheckboxes.forEach(cb => {
+                    cb.checked = mainCheckbox.checked;
+                    logInteraction('Checkbox Change', { 
+                        id: cb.id, 
+                        checked: cb.checked, 
+                        type: 'feature-checkbox', 
+                        category: mainCheckbox.id 
+                    });
+                });
+                logInteraction('Checkbox Change', { 
+                    id: mainCheckbox.id, 
+                    checked: mainCheckbox.checked, 
+                    type: 'category-checkbox' 
+                });
+            });
+
+            // Event listeners for sub-checkboxes
+            subCheckboxes.forEach(cb => {
+                cb.addEventListener('change', () => {
+                    const allChecked = Array.from(subCheckboxes).every(cb => cb.checked);
+                    const anyChecked = Array.from(subCheckboxes).some(cb => cb.checked);
+                    mainCheckbox.checked = allChecked;
+                    mainCheckbox.indeterminate = anyChecked && !allChecked;
+                    logInteraction('Checkbox Change', { 
+                        id: cb.id, 
+                        checked: cb.checked, 
+                        type: 'feature-checkbox', 
+                        category: mainCheckbox.id 
+                    });
+                });
+            });
+        }
+
+        // Function to create page indicators
+        function createPageIndicators() {
+            pageIndicator.innerHTML = '';
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'page-dot';
+                if (i === currentPageIndex) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    currentPageIndex = i;
+                    showPage(currentPageIndex);
+                    logInteraction('Page Indicator Click', { pageIndex: i });
+                });
+                pageIndicator.appendChild(dot);
+            }
+        }
+
+        // Handle navigation between pages and logging
+        document.getElementById('proceed-button').addEventListener('click', () => {
+            logInteraction('Proceed Button Clicked');
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.remove('hidden');
+            currentState.page = 'page2';
+            currentPageIndex = 0;
+            showPage(currentPageIndex);
+        });
+
+        ddocument.getElementById('next-button').addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent any potential form submission
+            nextPage.call(this);
+        });
+
+        document.getElementById('prev-button').addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent any potential form submission
+            previousPage.call(this);
+        });
+
+        // Initialize the Data Sharing Preferences page
+        document.addEventListener('DOMContentLoaded', () => {
+            createPageIndicators();
+            logInteraction('Page Load');
+        });
+
+        // Log page unload
+        window.addEventListener('beforeunload', () => {
+            logInteraction('Page Unload');
+            // Optionally, you can trigger log download here as a fallback
+            // downloadLog();
+        });
+    </script>
+</body>
+</html>
